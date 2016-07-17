@@ -1,0 +1,8 @@
+/**
+ * 
+ */
+document.getElementById("viewPage").style.zoom = "150%";
+
+function transferZoom() {	
+	app.setViewPageZoom(100);
+}

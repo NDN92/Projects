@@ -22,8 +22,9 @@ public class GUI extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {			
-		Group root = new Group();
-		Scene scene = new Scene(root, Color.LIGHTGREY);	
+		BorderPane root = new BorderPane();
+		root.setStyle("-fx-background-color: lightgrey;");
+		Scene scene = new Scene(root);	
 		
 		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 		int width = gd.getDisplayMode().getWidth();
@@ -36,9 +37,8 @@ public class GUI extends Application {
 		
 		StackPane pane = new StackPane();
 		pane.setStyle("-fx-background-color: #FFF;");
-		pane.setPrefWidth(width * 0.25);
-		pane.setPrefHeight(height * 0.25);
-		root.getChildren().add(pane);
+		pane.setMaxSize(width * 0.5, height * 0.5);
+		root.setCenter(pane);
 		
 			
 		primaryStage.setMaximized(true);

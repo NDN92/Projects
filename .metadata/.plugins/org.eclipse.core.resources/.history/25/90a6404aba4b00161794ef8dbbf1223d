@@ -1,0 +1,22 @@
+package de.NDN.app.writeInvoice;
+
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+
+public class WriteInvoiceView {
+	
+	private WebView browser;
+	private WebEngine engine;
+	
+	public WriteInvoiceView(WebView browser, WebEngine engine) {
+		this.browser = browser;
+		this.engine = engine;
+	}
+	
+	public void changeViewPageZoom(int viewPageZoom) {
+		this.engine.executeScript(
+				""
+		);
+	}
+	
+}

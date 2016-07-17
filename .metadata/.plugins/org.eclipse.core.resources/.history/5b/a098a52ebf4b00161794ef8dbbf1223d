@@ -1,0 +1,10 @@
+/**
+ * 
+ */
+window.onload = function () {
+	document.getElementById("btnZoomIn").addEventListener('click', function () {
+		document.getElementById("viewPage").style.zoom = "150%";
+	});
+	app.setLoaded();
+};
+

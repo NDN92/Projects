@@ -1,0 +1,25 @@
+package de.NDN.app.writeInvoice;
+
+import javafx.scene.web.WebEngine;
+
+public class WriteInvoiceJsInterfaceImpl implements WriteInvoiceJsInterface {
+	
+	private WebEngine engine;
+	
+	public WriteInvoiceJsInterfaceImpl(WebEngine engine) {
+		this.engine = engine;
+	}
+	
+	@Override
+	public int getViewPageWrapperWidth() {
+		this.engine.executeScript("getViewPageWrapperWidth()");
+		return 0;
+	}
+
+	@Override
+	public int getViewPageWrapperHeight() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

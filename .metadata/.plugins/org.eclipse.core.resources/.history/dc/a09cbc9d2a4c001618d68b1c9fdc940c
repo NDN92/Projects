@@ -1,0 +1,7 @@
+package de.NDN.app.writeInvoice;
+
+import javafx.scene.web.WebEngine;
+
+public interface WriteInvoiceJsInterface {
+	public getViewPageZoom()
+}

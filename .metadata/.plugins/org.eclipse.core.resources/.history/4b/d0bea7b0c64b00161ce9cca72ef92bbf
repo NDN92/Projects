@@ -1,0 +1,13 @@
+/**
+ * 
+ */
+//window.onload = function () {
+////	document.getElementById("btnZoomIn").addEventListener('click', function () {
+////		document.getElementById("viewPage").style.zoom = "150%";
+////		
+////	});
+//	
+//	//docL.setDefaults();
+//};
+
+document.getElementById('viewPage').style.backgroundColor = 'black';

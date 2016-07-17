@@ -1,0 +1,10 @@
+package de.NDN.test.GUI;
+
+public class GUI_RechnungenSchreiben {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

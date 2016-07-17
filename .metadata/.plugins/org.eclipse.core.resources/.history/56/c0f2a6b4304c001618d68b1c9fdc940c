@@ -1,0 +1,27 @@
+/**
+ * 
+ */
+
+//Controller
+window.onload = function () {
+	document.getElementById("btnZoomIn").addEventListener('click', function () {
+		wInv.zoomInViewPage();
+	});
+	document.getElementById("btnZoomOut").addEventListener('click', function () {
+		wInv.zoomOutViewPage();
+	});
+	
+	docL.setDefaults();
+};
+
+
+//View
+function changeViewPageZoom(viewPageZoom) {
+	document.getElementById('viewPage').style.zoom = viewPageZoom + '%';
+	document.getElementById('viewPageZoomDisplayBoard').innerHTML = viewPageZoom + '%';
+}
+
+//For Interface
+function getViewPageWrapperWidth() {
+	return document.getElementById('viewPageWrapper').offsetWidth;
+}

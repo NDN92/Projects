@@ -1,0 +1,18 @@
+/**
+ * 
+ */
+
+//Controller
+window.onload = function () {
+	document.getElementById("btnZoomIn").addEventListener('click', function () {
+		wInv.zoomInViewPage();
+	});
+	
+	docL.setDefaults();
+};
+
+
+//View
+function changeViewPageZoom(viewPageZoom) {
+	document.getElementById('viewPage').style.zoom = viewPageZoom + '%';
+}

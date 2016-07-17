@@ -1,0 +1,9 @@
+package de.NDN.app.writeInvoice;
+
+public class WriteInvoiceController {
+
+	public WriteInvoiceController() {
+		
+	}
+
+}

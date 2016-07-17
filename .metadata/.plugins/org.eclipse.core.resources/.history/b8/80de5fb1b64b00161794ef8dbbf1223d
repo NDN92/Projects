@@ -1,0 +1,27 @@
+package de.NDN.app.writeInvoice;
+
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import netscape.javascript.JSObject;
+
+public class WriteInvoiceController {
+
+	private WebView browser;
+	private WebEngine engine;
+	
+	public WriteInvoiceController(WebView browser, WebEngine engine) {
+		this.browser = browser;
+		this.engine = engine;
+		
+		init();
+	}
+	
+	public void init() {
+		this.engine.executeScript(
+				"window.onload = function () {" +
+						"document.getElementById('btnZoomIn').addEventListener('click', function () {" +
+							"document.getElementById('viewPage').style.zoom = '150%';"
+		);
+	}
+
+}

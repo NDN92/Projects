@@ -1,0 +1,12 @@
+package de.NDN.app;
+
+import de.NDN.app.writeInvoice.WriteInvoiceModel;
+
+public class NDN_Rechnungsprogramm {
+
+	public static void main(String[] args) {
+		WriteInvoiceModel wInvM = new WriteInvoiceModel();
+		
+	}
+
+}

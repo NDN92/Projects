@@ -1,0 +1,12 @@
+package de.NDN.app.writeInvoice;
+
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+
+public class WriteInvoiceView {
+	
+	private WebView browser;
+	private WebEngine engine;
+	
+	
+}

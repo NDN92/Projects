@@ -1,0 +1,16 @@
+/**
+ * 
+ */
+var loaded = false;
+
+window.onload = function () {
+//	document.getElementById("btnZoomIn").addEventListener('click', function () {
+//		document.getElementById("viewPage").style.zoom = "150%";
+//	});
+	loaded = true;
+};
+
+function getLoaded () {
+	return loaded;
+}
+

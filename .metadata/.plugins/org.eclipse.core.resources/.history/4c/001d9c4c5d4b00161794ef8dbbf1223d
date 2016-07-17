@@ -1,0 +1,7 @@
+/**
+ * 
+ */
+function transferZoom() {
+	
+	app.setViewPageZoom(100);
+}

@@ -1,0 +1,11 @@
+@CHARSET "ISO-8859-1";
+
+body {
+	background-color: #eee;
+}
+
+#startWindow {
+	width: 50%;
+	height: 50%;
+	margin: auto auto;
+}

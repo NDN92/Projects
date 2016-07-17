@@ -1,0 +1,34 @@
+body {
+	width: 600px;
+	margin: 20px auto;
+	background: #fcfdff;
+	font-family: sans-serif;
+}
+
+#content {
+	padding-top: 50px;
+	padding-bottom: 10px;
+	background: #eff7fd url("../img/logo.png") no-repeat scroll 350px 10px
+}
+
+h1, h2, p {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+h1 {
+	background-color: #1C75BC;
+	padding: 10px;
+	color: #f6f6f6;
+	text-align: center;
+}
+
+h2 {
+	background-color: #a9cdea;
+	padding: 10px;
+	color: #111
+}
+
+p {
+	text-align: justify;
+}

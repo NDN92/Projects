@@ -1,0 +1,23 @@
+package de.NDN.app.writeInvoice;
+
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import netscape.javascript.JSObject;
+
+public class WriteInvoiceController {
+
+	private WebView browser;
+	private WebEngine engine;
+	
+	public WriteInvoiceController(WebView browser, WebEngine engine) {
+		this.browser = browser;
+		this.engine = engine;
+		
+		init();
+	}
+	
+	public void init() {
+		JSObject windwo = (JSObject) this.engine.executeScript("window");
+	}
+
+}

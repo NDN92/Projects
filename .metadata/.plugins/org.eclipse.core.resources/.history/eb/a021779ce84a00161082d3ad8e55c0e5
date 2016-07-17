@@ -1,0 +1,42 @@
+package de.NDN.test.HTMLGUI;
+
+import javafx.scene.control.Menu;
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.MenuBar;
+import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
+
+public class HtmlGUI extends Application {
+
+	public static void main(String[] args) {
+		launch(args);
+	}
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		VBox root = new VBox();
+		
+		final Menu file = new Menu("Datei");
+		final Menu edit = new Menu("Bearbeiten");
+		MenuBar menuBar = new MenuBar();
+		menuBar.prefWidthProperty().bind(primaryStage.widthProperty());
+		menuBar.getMenus().addAll(file, edit);		
+		root.getChildren().add(menuBar);
+		
+		WebView browser = new WebView();
+		WebEngine engine = browser.getEngine();
+		String url = getClass().getResource("").toExternalForm() + "HTML/RechnungenSchreiben.html";
+		engine.load(url);
+		root.getChildren().add(browser);
+		
+		Scene scene = new Scene(root);		
+		primaryStage.setMaximized(true);
+		primaryStage.setScene(scene);
+		primaryStage.show();
+	}
+
+}

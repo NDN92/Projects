@@ -1,0 +1,19 @@
+package de.NDN.app.writeInvoice;
+
+public class WriteInvoiceJsInterfaceImpl implements WriteInvoiceJsInterface {
+	
+	
+	
+	@Override
+	public int getViewPageWrapperWidth() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getViewPageWrapperHeight() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

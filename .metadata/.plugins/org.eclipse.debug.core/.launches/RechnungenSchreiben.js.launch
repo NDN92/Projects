@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="com.genuitec.eclipse.javascript.debug.core.jsStandaloneAppLaunchConfigurationType">
+<booleanAttribute key="is-alive-probe-enabled" value="true"/>
+<stringAttribute key="jsAppLaunchingDelegateId" value="com.genuitec.eclipse.javascript.debug.nodejs.standalone"/>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/GUI_Test/src/de/NDN/test/HTMLGUI/JS/RechnungenSchreiben.js"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.ui.favoriteGroups">
+<listEntry value="org.eclipse.debug.ui.launchGroup.debug"/>
+</listAttribute>
+<booleanAttribute key="show-connection-console" value="false"/>
+<booleanAttribute key="source-maps-enabled" value="true"/>
+</launchConfiguration>

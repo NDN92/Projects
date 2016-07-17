@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<!-- 
+	== Introduction ==
+	
+	With the sample project in this tutorial you will quickly learn how to debug 
+	JavaScript in Java EE web applications.
+	
+	== Prerequisites ==
+
+	This tutorial requires:
+		- the latest version of the Google Chrome browser
+		- any Java EE web server, preferably Tomcat
+		
+	== Setup ==
+	
+	First, you need to launch the Webclipse-JSDebug-WebApp-Example project on a Java EE server:
+	
+		1. Right-click on the Webclipse-JSDebug-WebApp-Example project and 
+		   select Debug As>JavaScript in JavaEE Web Application.
+		   
+		2. Select the server you want to deploy.
+			- If you don't have a Java EE server configured click New Server and add a server.
+			- Eclipse Java EE comes with connectors for Tomcat and 
+			  it is the easiest server to configure.
+			
+		3. Click Finish. This sample project displays in the Chrome browser.
+		
+	    4. Follow the instructions on the page displayed in the browser to 
+	       interactively step through this tutorial.  
+	        - Remember that after each save of an HTML or JS file you must reload the 
+	          page in the browser for changes to take effect.
+ -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Debugging JavaScript in a Java EE Web Application</title>
+	
+	<!-- Add some colors to the page -->
+	<link rel="stylesheet" type="text/css" href="css/tutorial.css">
+	
+	<!-- Development version of jQuery -->
+	<script src="js/jquery-2.1.4.js"></script>
+	<!-- Never use minified scripts for debugging -->
+	<!-- <script src="js/jquery-2.1.4.min.js"></script> -->
+</head>
+<body>
+	<div id="content">
+		<h1>Debugging JavaScript<br>in a Java EE Web Application</h1>
+		<h2>Basics</h2>
+		<ol class="basicsSection">
+		<li>Open <code>index.html</code> in the editor. Note:  If line numbers do not show, right-click in the left margin of  
+		the editor and select Show Line Numbers.<li>Now let's add a breakpoint! Double-click in the left margin of 
+		line 66 (<code>var query = getQueryString();</code>). A blue circle appears in the margin to indicate a breakpoint.
+		<li>Reload this page in Chrome. Eclipse switches to the Debug perspective when the breakpoint is hit. Note:  If the breakpoint wasn't  
+		hit, ensure that a blue circle is on line 66 and that you selected Debug As>JavaScript in Java EE Web Application.
+		<li>Continue the tutorial.  Start on line 60 in the <code>index.html</code> file and complete the steps listed in the comments.</ol>
+		<p class="basicsSection done" style="display:none">
+		Done!
+		<script>
+			//1. Inspect the JavaScript.  Notice that this code is supposed to change the contents of the 
+			//Basics section to "Done!" but it didn't happen. Let's debug it!.
+			//2. Now that we have hit a brakpoint, we will use the following commands to control the execution:   
+			//Step Into (F5), Step Over (F6), Step Out (F7) and Continue (F8).
+			//Let's get started!
+			//3. Let's use Step Into (F5) to enter the getQueryString() function call.
+			var query = getQueryString();
+			//5. Use Step Over (F6) until you get to line 70 [toToggle.toggle();]. 
+			var toToggle = $(query);
+			var matched = toToggle.get();
+			toToggle.toggle();
+			//6. Place the mouse pointer over the "matched" variable on line 69 to check whether jQuery has  
+			//   matched anything. Hmm...the array is empty. There must be something wrong with the query.
+			//7. Take a close look.  Notice the spelling error on line 88.
+			//   The getQueryString() method should return the ".basicsS*e*ction" string.  
+			//   Fix the spelling error by replacing the "a" with an "e" and then save the file.
+			//8. Let's allow the code execution to finish by pressing Continue (F8).
+			//9. Reload the page! Repeat step 5 to debug again until line 70 [toToggle.toggle();].
+			//10. Hover over the "matched" variable again and notice the variable now has contents.
+			//    Problem solved!
+			//11. Now you can remove your breakpoint. You can either double-click on the 
+			//    blue circle in the margin or remove it from the Breakpoints view. 
+			//12. Now use Step Over (F6) until you see the instructions in the next section on the page in Chrome,  
+			//    be sure you notice the toggle of the Basics section on your page in Chrome to Done!
+			
+			function getQueryString() {
+				//4. Now use Step Out (F7) to return from the function immeditely. This will 
+				//   execute all lines of code until after the function returns.
+				var result = ".basicsSaction"
+				return result;
+			} 
+		</script>
+		<h2>Value inspection and stack frames</h2>
+		<p class="valuesSection">
+		In the previous section you learned how to inspect a variable value from your 
+		source code. Let's dive deeper into variables inspection.<p class="valuesSection">Put your breakpoint on 
+		line 139 (<code>return result;</code>) and follow the instructions in the code beginning on line 127.
+		<p class="valuesSection done" style="display:none">
+		Done!
+		<script>
+			(function toggleTheSection() {
+				//5. Notice that the list of variables has changed and
+				//   that you can now see a value for the "query" variable, 
+				//   which is yet undefined. And right... you've also 
+				//   been "moved" to the appropriate location in code.
+				//6. Let's Step Over (F6) until we reach line 123 [$(query).toggle()]
+				var query = getValueQueryString();
+				//7. View your page in chrome.  You can see that call didn't work 
+				//   - paragraphs were not toggled.
+				//8. Let's see if our jQuery returns anything! Checking that helped us the last time.
+				//   Let's be smarter this time and use the Expressions view instead
+				//   of adding some code and reloading the page.  The Expressions view is next to the   
+				//   Breakpoints view. If you don't see it, select Window>Show View>Expressions. 
+				//9. Click "Add new expression" and type: "$(query).get()"
+				//10. Well, the array is empty - it's probably that query string again...
+				//11. Let's experiment with the query string - replace the query variable in the 
+				//    expression with ".valueSection" string and press ENTER. Be sure you include those quotes!
+				//12. Still empty - which was expected. Now if you take a closer look at the class
+				//    name of the paragraphs above, you'll notice that it should be "value*s*Section".
+				//    Add an "s" to correct the expression in the view and notice that now you get an
+				//    array of elements! Viola!
+				//13. The only thing left to do is to correct the spelling error on line 126, save the file, 
+				//    remove the breakpoint, reload the page and enjoy a nice "Done!" for this section.
+				$(query).toggle();
+			})()
+			function getValueQueryString() {
+				var result = ".valueSection";
+				//1. Let's use the Variables view to check local and global variables
+				//   It should be located in top-right of the Debug perspective.
+				//   If you do not see it, select Window>Show View>Variables.
+				//2. Notice that within the context of "getValueQueryString()" function there is
+				//   only one local variable - "result" in the Variables view.
+				//3. Expand <global> and you'll get a long list of variables
+				//   You should be able to spot the "query" variable from the previous example. 
+				//4. How about inspecting values of local variables of the toggleTheSection() method?
+				//   The Debug view (which should already be opened and located in the top left corner)
+				//   lists all the launches, running processes and debug targets. The selection should be 
+				//   focused on the stack frame for "getValueQueryString()" function call. Now, select
+				//   the element below - the Stack Frame for "toggleTheSection()" function call.
+				return result;
+			}
+		</script>
+		<h2>Exceptions and stack frames again</h2>
+		<p class="exceptionsSection">
+		Yep, exceptions happen from time to time and being able to get right to the point is crucial.
+		In your Eclipse workbench there is a Console view in the bottom area. The console for
+		the current debugging session should already be opened, but if some other console is displayed, 
+		you can quickly switch by selecting the appropriate launch from the Debug View.
+		<p class="exceptionsSection">
+		The browser outputs all uncaught errors to the console in red and you can quickly navigate to  
+		their locations by clicking on the hiperlink. You've probably already noticed that your console 
+		has stack traces in red. Let's get a fresh start. Right-click and click Clear to clean up the 
+		console. Now, reload the page and an error appears in the console.
+		<p class="exceptionsSection">
+		Unfortunately, the error shown in the console:
+		<p class="exceptionsSection" style="color:red; padding-left: 20px">
+		<code>Uncaught TypeError: $(...)[methodToCall] is not a function</code> 
+		<p class="exceptionsSection">
+		is not verbose enough - we only know that <code>methodToCall</code> most likely points to a nonexistent 
+		method of our jQuery object. Let's add a breakpoint to line 180 (<code>$(".exceptionsSection")[methodToCall]();</code>), 
+		and reload the page.  Continue with the steps in the code beginning on line 169.
+		<p class="exceptionsSection done" style="display: none">
+		Done!
+		<script>
+			(function doExceptions(){
+				//3. Nice! The variable "methodToCall" is now "undefined" and
+				//   we can check who has set it up to the wrong value. Let's
+				//   Step Into (F5) "getMethodToCall()".
+				var methodToCall = getMethodToCall();
+				//1. Hover over the "methodToCall" variable and notice
+				//   yet another spelling error, it should be "toggle".
+				//   We could statically analyze why the variable value is wrong,
+				//   however, let's use the debugger to get us straight to the location.
+				//   This approach is very helpful in cases where static analysis is too complex.
+				//2. You can see that the "methodToCall" value has been set in this function.
+				//   Let's "go back in time" and execute the function again!
+				//   Right click on the Stack Frame of "doExceptions()" in Debug View and
+				//   choose "Drop to Frame". Continue to step 3 on line 165. 
+				//   Note:  You can also drop to any previous frame if you need to "go back in time" even more. 
+				//   Remember thought, it's not perfect and any side effects of functions will not be reverted.
+				$(".exceptionsSection")[methodToCall]();
+			})()
+			function getMethodToCall() {
+				//4. Here it is! Now, you can fix the string in the method (add that extra "g"), 
+				//   save the file, remove breakpoints, reload and move to the next section!
+				return "togle";
+			}
+		</script>
+		<h2>More on breakpoints</h2>
+		<p class="breakpointsSection">
+		Simple line breakpoints will typically serve you well. However, there are moments when you need 
+		something more powerful. Put a breakpoint on line 212 (<code>$(query).toggle();</code>) 
+		and follow the instructions beginning on line 200 to see what we can squeeze out of the debugger! 
+		<p class="breakpointsSection done" style="display:none">
+		Done!
+		<script>
+			var list = ["foo", "bar", "foobar", "barfoo", "boo", "far", "bor", "breakpoints", "fao"];
+			for (var key in list) {
+				var val = list[key];
+				var query = "." + val + "section";
+				//1. Take a look at this code.  We have a long list of vars to check until we reach the "breakpoints" string...
+				//   We should break once val variable equals "breakpoints", shouldn't we?
+				//2. Open the Breakpoints view and select the breakpoint for line 212. You'll notice a checkbox
+				//   "Conditional" in the bottom area (if not, resize the view to get more space). Select the 
+				//   checkbox and than enter in the text area below (if not visible, resize the view): 
+				//	   val == "breakpoints" 
+				//   Once you're done with editing press CTRL+S (CMD+S for Macs) or select the breakpoint 
+				//   again to save the changes.
+				//3. Continue (F8).
+				//4. Hover over the "val" variable - cool, it now equals "breakpoints"!
+				//5. Hover over the "query" var - oh, well, a spelling error again, "section" should begin with
+				//   an upper case "S". Correct, save the file, remove the breakpoint and relaod the page :)
+				$(query).toggle();
+			}
+		</script>
+		
+		<h2>Script inspector</h2>
+		<p class="inspectorSection">
+		The Webclipse JavaScript Debugger comes with a handy Loaded JavaScript view
+		in the lower-right area of the Debugger perspective. This view lists all of the 
+		scripts loaded by the browser. You can tweak it using toolbar buttons:
+		<ul class="inspectorSection">
+			<li>switch between flat or hierarchical display of scripts
+			<li>link the view with selection
+			<li>enable/disable filters - some content, like evaluated scripts is by
+			    default hidden
+		</ul>
+		<p class="inspectorSection">
+		To complete this section, locate the js/foobar.js file in the Loaded JavaScript view
+		using your favorite presentation mode,	double click on the file and follow instructions.
+		<p class="inspectorSection done" style="display: none">
+		Done!
+		<script src="js/foobar.js"></script>
+		<h1 id="congrats" style="display:none">Congratulations, you've completed the tutorial!</h1>
+		<script>
+			if ($(".done:visible").get().length == 5) {
+				$("#congrats").show()
+			}
+		</script>
+	</div>
+</body>
+</html>
