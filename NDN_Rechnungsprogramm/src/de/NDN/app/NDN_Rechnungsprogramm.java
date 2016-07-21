@@ -1,5 +1,6 @@
 package de.NDN.app;
 
+import de.NDN.app.globalObjects.CustomerType;
 import de.NDN.app.writeInvoice.WriteInvoiceModel;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -19,7 +20,7 @@ public class NDN_Rechnungsprogramm extends Application {
 		Button btn = new Button("Rechnungen Schreiben");
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {		    	
-		        WriteInvoiceModel wInvM = new WriteInvoiceModel();
+		        WriteInvoiceModel wInvM = new WriteInvoiceModel(CustomerType.PRIVATE);
 		        wInvM.initWriteInvoice();
 		        primaryStage.close();
 		    }

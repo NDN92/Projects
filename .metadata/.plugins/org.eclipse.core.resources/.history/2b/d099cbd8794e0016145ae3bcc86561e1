@@ -1,0 +1,13 @@
+package de.NDN.app.writeInvoice.document;
+
+public class DocumentInvoiceFactory {
+	
+	private DocumentInvoice doc;
+	
+	public DocumentInvoiceFactory() {
+	}
+	
+	public void createNewDocument() {
+		
+	}
+}

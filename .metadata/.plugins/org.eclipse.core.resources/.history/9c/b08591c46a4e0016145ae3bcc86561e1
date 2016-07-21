@@ -1,0 +1,23 @@
+package de.NDN.app.writeInvoice.document;
+
+import java.util.Date;
+
+import de.NDN.app.globalObjects.Address;
+
+public class InvoiceHeader {
+	
+	private Address customerAddress;
+	private int customerNumber;
+	private int invoiceNumber;
+	private Date invoiceDate;
+	//Woche in der die Leistung erbracht wurde
+	private int weekNumber;
+	
+	//Volkswohnung-spezifische Attribute
+	private String vwJobNumber;
+	private String vwFlatNumber;
+	
+	public InvoiceHeader() {
+		
+	}
+}

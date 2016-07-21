@@ -1,0 +1,19 @@
+package de.NDN.app.writeInvoice.document;
+
+public class DocumentInvoice {
+	
+	private Page pages[];
+	
+	public DocumentInvoice(Page pages[]) {
+		this.setPages(pages);
+	}
+
+	public Page[] getPages() {
+		return pages;
+	}
+
+	public void setPages(Page pages[]) {
+		this.pages = pages;
+	}
+	
+}

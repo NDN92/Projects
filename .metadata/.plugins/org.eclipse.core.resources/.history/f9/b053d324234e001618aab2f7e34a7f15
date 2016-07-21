@@ -1,0 +1,12 @@
+package de.NDN.app.objects;
+
+public class Page {
+	
+	private CompanyHeader companyHeader;
+	
+	
+	public Page() {
+		
+	}
+	
+}

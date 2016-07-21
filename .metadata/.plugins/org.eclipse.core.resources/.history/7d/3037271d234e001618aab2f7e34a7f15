@@ -1,0 +1,21 @@
+package de.NDN.app.objects;
+
+import de.NDN.app.objects.Page;
+
+public class Document {
+	
+	private Page pages[];
+	
+	public Document(Page pages[]) {
+		this.setPages(pages);
+	}
+
+	public Page[] getPages() {
+		return pages;
+	}
+
+	public void setPages(Page pages[]) {
+		this.pages = pages;
+	}
+	
+}

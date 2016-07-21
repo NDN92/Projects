@@ -1,0 +1,21 @@
+package de.NDN.app.objects;
+
+public class Address {
+	
+	//Anrede
+	private String salutation;
+	private String title;
+	private String firstName;
+	private String lastName;
+	private String companyName;
+	private String street;
+	private String number;
+	//Etage
+	private String floor;
+	private String zipcode;
+	private String town;
+	
+	public Address() {
+		
+	}
+}

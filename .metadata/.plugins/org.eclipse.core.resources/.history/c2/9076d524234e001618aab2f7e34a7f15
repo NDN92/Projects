@@ -1,0 +1,14 @@
+package de.NDN.app.objects;
+
+import de.NDN.app.objects.CompanyHeader;
+
+public class Page {
+	
+	private CompanyHeader companyHeader;
+	
+	
+	public Page() {
+		
+	}
+	
+}

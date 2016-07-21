@@ -1,0 +1,13 @@
+package de.NDN.app.writeInvoice.document;
+
+import de.NDN.app.globalObjects.Address;
+
+public class InvoiceHeader {
+	
+	private Address customerAddress;
+	private int invoiveNumber;
+	
+	public InvoiceHeader() {
+		
+	}
+}

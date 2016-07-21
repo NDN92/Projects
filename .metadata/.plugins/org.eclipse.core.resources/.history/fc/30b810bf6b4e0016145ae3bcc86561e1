@@ -1,0 +1,14 @@
+package de.NDN.app.writeInvoice.document;
+
+import de.NDN.app.globalObjects.CompanyHeader;
+
+public class PageInvoice {
+	
+	private CompanyHeader companyHeader;
+	
+	
+	public PageInvoice() {
+		
+	}
+	
+}

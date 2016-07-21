@@ -1,0 +1,11 @@
+package de.NDN.app;
+
+public class Document {
+	
+	private Page pages[];
+	
+	public Document(Page pages[]) {
+		this.pages = pages;
+	}
+	
+}

@@ -1,0 +1,9 @@
+package de.NDN.app.objects;
+
+public class companyHeader {
+	
+	
+	public companyHeader() {
+		
+	}
+}

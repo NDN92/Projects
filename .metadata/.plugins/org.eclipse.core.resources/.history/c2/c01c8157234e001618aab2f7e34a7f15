@@ -1,0 +1,17 @@
+package de.NDN.app.objects;
+
+import javafx.scene.image.Image;
+
+public class CompanyHeader {
+	
+	private Image companyLogo;
+	private Address companyAddress;
+	private String phoneNumber;
+	private String faxNumber;
+	private String eMail;
+	private String web;
+	
+	public CompanyHeader() {
+		
+	}
+}

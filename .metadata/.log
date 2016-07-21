@@ -4089,3 +4089,175 @@ com.sun.jdi.VMOutOfMemoryException
 	at org.eclipse.jdt.internal.debug.core.EventDispatcher.access$0(EventDispatcher.java:100)
 	at org.eclipse.jdt.internal.debug.core.EventDispatcher$1.run(EventDispatcher.java:250)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SESSION 2016-07-19 00:45:51.024 -----------------------------------------------
+eclipse.buildId=4.6.0.I20160606-1100
+java.version=1.8.0_20
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=de_DE
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2016-07-19 00:46:00.738
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Nick Nowak'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY com.genuitec.eclipse.monitor 4 0 2016-07-19 00:46:24.505
+!MESSAGE FrameworkEvent ERROR
+!STACK 0
+org.osgi.framework.BundleException: Exception in com.genuitec.eclipse.monitor.internal.MonitorPlugin.stop() of bundle com.genuitec.eclipse.monitor.
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:850)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.stopWorker0(EquinoxBundle.java:946)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$EquinoxModule.stopWorker(EquinoxBundle.java:314)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:636)
+	at org.eclipse.osgi.container.Module.stop(Module.java:498)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.decStartLevel(ModuleContainer.java:1661)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1580)
+	at org.eclipse.osgi.container.SystemModule.stopWorker(SystemModule.java:253)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule.stopWorker(EquinoxBundle.java:147)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:636)
+	at org.eclipse.osgi.container.Module.stop(Module.java:498)
+	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:191)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:165)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.lang.ExceptionInInitializerError
+	at com.jniwrapper.util.ProcessorInfo.b(SourceFile:95)
+	at com.jniwrapper.util.ProcessorInfo.getInstance(SourceFile:88)
+	at com.genuitec.eclipse.core.activation.SystemIdFactory.D(Unknown Source)
+	at com.genuitec.eclipse.core.activation.SystemIdFactory.create(Unknown Source)
+	at com.genuitec.eclipse.core.LicenseUtil.getSystemId(Unknown Source)
+	at com.genuitec.eclipse.monitor.internal.collector.server.ServerMetricsCollector.getSystemId(ServerMetricsCollector.java:493)
+	at com.genuitec.eclipse.monitor.internal.collector.server.ServerMetricsCollector.saveToFile(ServerMetricsCollector.java:346)
+	at com.genuitec.eclipse.monitor.internal.collector.server.ServerMetricsCollector.stopMonitoring(ServerMetricsCollector.java:217)
+	at com.genuitec.eclipse.monitor.internal.MetricsManager.stopMonitoring(MetricsManager.java:239)
+	at com.genuitec.eclipse.monitor.internal.MetricsManager.dispose(MetricsManager.java:161)
+	at com.genuitec.eclipse.monitor.internal.MonitorPlugin.stop(MonitorPlugin.java:62)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$4.run(BundleContextImpl.java:830)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$4.run(BundleContextImpl.java:1)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:823)
+	... 13 more
+Caused by: com.jniwrapper.LibraryNotFoundException: Cannot find JNIWrapper native library (jniwrap64.dll) in java.library.path: C:\Users\Nick Nowak\eclipse\java-neon\eclipse;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jdk1.8.0_20/jre/bin/server;C:/Program Files/Java/jdk1.8.0_20/jre/bin;C:/Program Files/Java/jdk1.8.0_20/jre/lib/amd64;C:\cygwin\bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\nodejs\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\QuickTime\QTSystem\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files (x86)\CodeMeter\DevKit\bin\;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\Users\Nick Nowak\AppData\Roaming\npm;C:\WINDOWS\System32;;.
+Root exception:
+java.lang.ExceptionInInitializerError
+	at com.jniwrapper.util.ProcessorInfo.b(SourceFile:95)
+	at com.jniwrapper.util.ProcessorInfo.getInstance(SourceFile:88)
+	at com.genuitec.eclipse.core.activation.SystemIdFactory.D(Unknown Source)
+	at com.genuitec.eclipse.core.activation.SystemIdFactory.create(Unknown Source)
+	at com.genuitec.eclipse.core.LicenseUtil.getSystemId(Unknown Source)
+	at com.genuitec.eclipse.monitor.internal.collector.server.ServerMetricsCollector.getSystemId(ServerMetricsCollector.java:493)
+	at com.genuitec.eclipse.monitor.internal.collector.server.ServerMetricsCollector.saveToFile(ServerMetricsCollector.java:346)
+	at com.genuitec.eclipse.monitor.internal.collector.server.ServerMetricsCollector.stopMonitoring(ServerMetricsCollector.java:217)
+	at com.genuitec.eclipse.monitor.internal.MetricsManager.stopMonitoring(MetricsManager.java:239)
+	at com.genuitec.eclipse.monitor.internal.MetricsManager.dispose(MetricsManager.java:161)
+	at com.genuitec.eclipse.monitor.internal.MonitorPlugin.stop(MonitorPlugin.java:62)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$4.run(BundleContextImpl.java:830)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl$4.run(BundleContextImpl.java:1)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:823)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle.stopWorker0(EquinoxBundle.java:946)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$EquinoxModule.stopWorker(EquinoxBundle.java:314)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:636)
+	at org.eclipse.osgi.container.Module.stop(Module.java:498)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.decStartLevel(ModuleContainer.java:1661)
+	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:1580)
+	at org.eclipse.osgi.container.SystemModule.stopWorker(SystemModule.java:253)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule.stopWorker(EquinoxBundle.java:147)
+	at org.eclipse.osgi.container.Module.doStop(Module.java:636)
+	at org.eclipse.osgi.container.Module.stop(Module.java:498)
+	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:191)
+	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:165)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: com.jniwrapper.LibraryNotFoundException: Cannot find JNIWrapper native library (jniwrap64.dll) in java.library.path: C:\Users\Nick Nowak\eclipse\java-neon\eclipse;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Program Files/Java/jdk1.8.0_20/jre/bin/server;C:/Program Files/Java/jdk1.8.0_20/jre/bin;C:/Program Files/Java/jdk1.8.0_20/jre/lib/amd64;C:\cygwin\bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\nodejs\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\QuickTime\QTSystem\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files (x86)\CodeMeter\DevKit\bin\;C:\Program Files\MiKTeX 2.9\miktex\bin\x64\;C:\Users\Nick Nowak\AppData\Roaming\npm;C:\WINDOWS\System32;;.
+!SESSION 2016-07-20 03:00:49.772 -----------------------------------------------
+eclipse.buildId=4.6.0.I20160606-1100
+java.version=1.8.0_20
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=de_DE
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2016-07-20 03:01:01.659
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Nick Nowak'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY com.genuitec.eclipse.javascript.tern 4 0 2016-07-20 03:42:15.791
+!MESSAGE Error: Couldn't locate property in the base object type.
+!STACK 0
+tern.TernException: Error: Couldn't locate property in the base object type.
+	at tern.server.TernExceptionFactory.create(TernExceptionFactory.java:27)
+	at tern.server.nodejs.NodejsTernHelper.makeRequest(NodejsTernHelper.java:94)
+	at tern.server.nodejs.NodejsTernServer.makeRequest(NodejsTernServer.java:297)
+	at tern.server.nodejs.NodejsTernServer.request(NodejsTernServer.java:255)
+	at tern.server.protocol.TernResultsProcessorsFactory.makeRequestAndProcess(TernResultsProcessorsFactory.java:45)
+	at tern.eclipse.ide.internal.core.resources.IDETernServerAsyncReqProcessor.run(IDETernServerAsyncReqProcessor.java:109)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY com.genuitec.eclipse.javascript.tern 4 0 2016-07-20 03:42:16.908
+!MESSAGE Error: Couldn't locate property in the base object type.
+!STACK 0
+tern.TernException: Error: Couldn't locate property in the base object type.
+	at tern.server.TernExceptionFactory.create(TernExceptionFactory.java:27)
+	at tern.server.nodejs.NodejsTernHelper.makeRequest(NodejsTernHelper.java:94)
+	at tern.server.nodejs.NodejsTernServer.makeRequest(NodejsTernServer.java:297)
+	at tern.server.nodejs.NodejsTernServer.request(NodejsTernServer.java:255)
+	at tern.server.protocol.TernResultsProcessorsFactory.makeRequestAndProcess(TernResultsProcessorsFactory.java:45)
+	at tern.eclipse.ide.internal.core.resources.IDETernServerAsyncReqProcessor.run(IDETernServerAsyncReqProcessor.java:109)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SESSION 2016-07-20 12:58:24.060 -----------------------------------------------
+eclipse.buildId=4.6.0.I20160606-1100
+java.version=1.8.0_20
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=de_DE
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2016-07-20 12:58:33.387
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Nick Nowak'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY com.genuitec.eclipse.javascript.tern 4 0 2016-07-20 23:37:07.483
+!MESSAGE Error: Couldn't locate property in the base object type.
+!STACK 0
+tern.TernException: Error: Couldn't locate property in the base object type.
+	at tern.server.TernExceptionFactory.create(TernExceptionFactory.java:27)
+	at tern.server.nodejs.NodejsTernHelper.makeRequest(NodejsTernHelper.java:94)
+	at tern.server.nodejs.NodejsTernServer.makeRequest(NodejsTernServer.java:297)
+	at tern.server.nodejs.NodejsTernServer.request(NodejsTernServer.java:255)
+	at tern.server.protocol.TernResultsProcessorsFactory.makeRequestAndProcess(TernResultsProcessorsFactory.java:45)
+	at tern.eclipse.ide.internal.core.resources.IDETernServerAsyncReqProcessor.run(IDETernServerAsyncReqProcessor.java:109)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY com.genuitec.eclipse.javascript.tern 4 0 2016-07-21 00:29:51.626
+!MESSAGE Error: Couldn't locate property in the base object type.
+!STACK 0
+tern.TernException: Error: Couldn't locate property in the base object type.
+	at tern.server.TernExceptionFactory.create(TernExceptionFactory.java:27)
+	at tern.server.nodejs.NodejsTernHelper.makeRequest(NodejsTernHelper.java:94)
+	at tern.server.nodejs.NodejsTernServer.makeRequest(NodejsTernServer.java:297)
+	at tern.server.nodejs.NodejsTernServer.request(NodejsTernServer.java:255)
+	at tern.server.protocol.TernResultsProcessorsFactory.makeRequestAndProcess(TernResultsProcessorsFactory.java:45)
+	at tern.eclipse.ide.internal.core.resources.IDETernServerAsyncReqProcessor.run(IDETernServerAsyncReqProcessor.java:109)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SESSION 2016-07-21 02:21:08.908 -----------------------------------------------
+eclipse.buildId=4.6.0.I20160606-1100
+java.version=1.8.0_20
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=de_DE
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2016-07-21 02:21:16.826
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Nick Nowak'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.

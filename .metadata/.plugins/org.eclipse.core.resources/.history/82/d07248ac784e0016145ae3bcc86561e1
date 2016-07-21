@@ -1,0 +1,5 @@
+package de.NDN.app.writeInvoice.document;
+
+public class DocumentInvoiceFactory {
+	private DocumentInvoice doc;
+}

@@ -1,0 +1,6 @@
+package de.NDN.app.globalObjects;
+
+public class LineItem {
+	
+	private String position;
+}

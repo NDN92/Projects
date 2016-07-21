@@ -1,0 +1,12 @@
+1468976857608	Encapsulate field 'viewPageShadowBlur'
+1468979918359	Encapsulate field 'pages'
+1468980663282	Move compilation units
+1468981879522	Rename type 'companyHeader'
+1468982340168	Move compilation unit
+1468982353058	Move compilation unit
+1468982396937	Rename type 'Document'
+1468982409719	Rename type 'Page'
+1468982438067	Rename package 'de.NDN.app.objects'
+1469013768801	Rename type 'lineItem'
+1469019010716	Move compilation unit
+1469019027901	Rename compilation unit 'DocumentFactory.java'

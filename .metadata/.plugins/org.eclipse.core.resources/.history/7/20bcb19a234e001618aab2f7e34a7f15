@@ -1,0 +1,8 @@
+package de.NDN.app.writeInvoice.document;
+
+public class InvoiceHeader {
+	
+	public InvoiceHeader() {
+		
+	}
+}

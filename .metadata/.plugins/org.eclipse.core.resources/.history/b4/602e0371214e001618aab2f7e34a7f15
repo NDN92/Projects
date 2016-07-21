@@ -1,0 +1,13 @@
+package de.NDN.app.objects;
+
+import javafx.scene.image.Image;
+
+public class companyHeader {
+	
+	private Image companyLogo;
+	private String companyName;
+	
+	public companyHeader() {
+		
+	}
+}

@@ -1,0 +1,19 @@
+package de.NDN.app.writeInvoice.document;
+
+import java.util.ArrayList;
+
+import de.NDN.app.globalObjects.CustomerType;
+
+public class DocumentInvoiceFactory {
+	
+	private DocumentInvoice doc;
+	
+	public DocumentInvoiceFactory() {
+	}
+	
+	public void createNewDocument(CustomerType customerType) {
+		this.doc = new DocumentInvoice(customerType, new ArrayList<PageInvoice>());
+		this.doc.getPages().add( new PageInvoice(this.doc, 1) );
+	}
+	
+}
