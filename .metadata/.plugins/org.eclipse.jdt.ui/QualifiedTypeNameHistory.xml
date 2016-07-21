@@ -49,4 +49,5 @@
 <fullyQualifiedTypeName name="javafx.scene.image.Image"/>
 <fullyQualifiedTypeName name="de.NDN.app.globalObjects.Address"/>
 <fullyQualifiedTypeName name="javafx.scene.web.WebEngine"/>
+<fullyQualifiedTypeName name="de.NDN.app.NDN_Rechnungsprogramm"/>
 </qualifiedTypeNameHistroy>

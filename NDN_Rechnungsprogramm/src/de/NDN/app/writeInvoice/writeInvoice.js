@@ -32,8 +32,24 @@ function setPrintableArea(topMargin, rightMargin, bottomMargin, leftMargin) {
 	document.getElementById('viewPage').style.padding = topMargin + 'px ' +  rightMargin + 'px ' + bottomMargin + 'px ' + leftMargin + 'px';
 }
 function setCompanyHeader(height, logoURL) {
+	var root = document.getElementById('viewPagePrintableArea');
 	
-	document.getElementById('viewPagePrintableArea').innerHTML = '<div></div>';
+	var divEl = document.createElement('div');
+	divEl.setAttribute('id', 'companyHeader');
+	divEl.style.height = height + 'px';
+	
+	var logo = document.createElement('div');
+	logo.setAttribute('id', 'companyLogo');
+	logo.style.height = height + 'px';
+	logo.style.backgroundImage = "url('" + logoURL + "')";	
+	divEl.appendChild(logo);	
+	root.appendChild(divEl)
+	
+	var line = document.createElement('hr');
+	line.setAttribute('id', 'lineSeparator');
+	root.appendChild(line);
+	
+	
 }
 
 //Interface Getter

@@ -34,6 +34,12 @@ public class DocumentInvoiceFactory {
 						this.doc.getPages().get(0).getPrintableArea()[2] + ", " +
 						this.doc.getPages().get(0).getPrintableArea()[3] + ");");
 				
+				
+				String companyLogoUrl = this.doc.getPages().get(0).getCompanyHeader().getCompanyLogoURL();
+				companyLogoUrl = "../images" + companyLogoUrl.substring(companyLogoUrl.lastIndexOf("/"), companyLogoUrl.length());				
+				this.engine.executeScript("setCompanyHeader(" + 
+						this.doc.getPages().get(0).getCompanyHeader().getCompanyHeaderHeight() + ", '" +
+						companyLogoUrl + "');");
 			}
 			
 		}
