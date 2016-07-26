@@ -1,7 +1,0 @@
-/**
- * 
- */
-function transferZoom() {
-	var style = document.getElementById('viewPage');
-	app.setViewPageZoom(style);
-}

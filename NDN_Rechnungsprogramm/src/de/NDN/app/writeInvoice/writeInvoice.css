@@ -39,8 +39,9 @@ body, html {
 	display: table-cell;
 	border: 1px solid;
 }
-#allArea .leftArea {
+#allArea .leftArea {	
 	width: 5%;
+	text-align: center;
 }
 #allArea .rightArea {
 	width: 95%;
@@ -82,7 +83,7 @@ body, html {
 	display: block;
 	width: 100%;
 	height: 100%;
-	border: 1px solid #FFFFF;
+	border: 0px solid lightgrey;
 }
 
 #viewPageControls {
@@ -109,18 +110,6 @@ body, html {
 
 
 
-#companyHeader {
-	display: block;
-	width: 100%;
-}
-#companyHeader #companyLogo {
-	display: block;
-	width: 100%;
-	
-	background-size: contain;
-	background-repeat: no-repeat;
-}
-#lineSeparator {
-	margin: 0;
-	border: 0.5px solid;
+#viewPagePrintableArea #companyLogo, #hrSeparator {
+	position: absolute;
 }

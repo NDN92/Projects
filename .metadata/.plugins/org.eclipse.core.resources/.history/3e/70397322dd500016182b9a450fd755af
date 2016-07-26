@@ -1,0 +1,7 @@
+package de.NDN.app.writeInvoice.document;
+
+import java.awt.print.Printable;
+
+public class DocumentInvoicePrinter implements Printable {
+	
+}

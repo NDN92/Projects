@@ -1,0 +1,32 @@
+package de.NDN.app.writeInvoice.document.print;
+
+import java.awt.print.Book;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
+import java.util.ArrayList;
+
+public class DocumentInvoicePrinter {
+	
+	private Book book;
+	
+	public DocumentInvoicePrinter(ArrayList<Printable> printableDocuments) {
+		for(Printable printableDocument : printableDocuments) {
+			
+		}
+	}	
+	
+	public void doPrint() {
+		PrinterJob job = PrinterJob.getPrinterJob();
+        job.setPageable(this.book);
+        boolean ok = job.printDialog();
+        if (ok) {
+            try {
+                 job.print();
+            } catch (PrinterException ex) {
+             /* The job did not successfully complete */
+            }
+        }
+	}
+	
+}

@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="javafx.scene.control.ScrollPane"/>
-<fullyQualifiedTypeName name="javafx.scene.layout.StackPane"/>
-<fullyQualifiedTypeName name="java.net.URL"/>
-<fullyQualifiedTypeName name="java.awt.Menu"/>
-<fullyQualifiedTypeName name="javafx.scene.control.MenuBar"/>
-<fullyQualifiedTypeName name="javafx.scene.control.Menu"/>
-<fullyQualifiedTypeName name="javafx.scene.layout.HBox"/>
-<fullyQualifiedTypeName name="javafx.scene.layout.VBox"/>
-<fullyQualifiedTypeName name="javafx.scene.Group"/>
-<fullyQualifiedTypeName name="javafx.scene.layout.Pane"/>
 <fullyQualifiedTypeName name="javafx.beans.value.ChangeListener"/>
 <fullyQualifiedTypeName name="javafx.beans.value.ObservableValue"/>
 <fullyQualifiedTypeName name="javafx.concurrent.Worker.State"/>
@@ -26,7 +16,6 @@
 <fullyQualifiedTypeName name="javafx.stage.Stage"/>
 <fullyQualifiedTypeName name="de.NDN.app.writeInvoice.WriteInvoiceApp"/>
 <fullyQualifiedTypeName name="de.NDN.app.writeInvoice.WriteInvoiceView"/>
-<fullyQualifiedTypeName name="de.NDN.app.writeInvoice.WriteInvoiceModel"/>
 <fullyQualifiedTypeName name="de.NDN.app.writeInvoice.WriteInvoiceJsInterface"/>
 <fullyQualifiedTypeName name="de.NDN.app.writeInvoice.WriteInvoiceJsInterfaceImpl"/>
 <fullyQualifiedTypeName name="netscape.javascript.JSObject"/>
@@ -41,13 +30,34 @@
 <fullyQualifiedTypeName name="de.NDN.app.globalObjects.LineItem"/>
 <fullyQualifiedTypeName name="de.NDN.app.writeInvoice.document.DocumentInvoiceFactory"/>
 <fullyQualifiedTypeName name="de.NDN.app.globalObjects.CustomerType"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="de.NDN.app.writeInvoice.document.PageInvoice"/>
 <fullyQualifiedTypeName name="de.NDN.app.writeInvoice.document.DocumentInvoice"/>
 <fullyQualifiedTypeName name="de.NDN.app.globalObjects.CompanyHeader"/>
 <fullyQualifiedTypeName name="de.NDN.app.writeInvoice.document.InvoiceHeader"/>
-<fullyQualifiedTypeName name="javafx.scene.image.Image"/>
 <fullyQualifiedTypeName name="de.NDN.app.globalObjects.Address"/>
 <fullyQualifiedTypeName name="javafx.scene.web.WebEngine"/>
 <fullyQualifiedTypeName name="de.NDN.app.NDN_Rechnungsprogramm"/>
+<fullyQualifiedTypeName name="java.awt.print.Pageable"/>
+<fullyQualifiedTypeName name="java.awt.print.Printable"/>
+<fullyQualifiedTypeName name="de.NDN.app.writeInvoice.document.print.DocumentInvoicePrinter"/>
+<fullyQualifiedTypeName name="java.awt.print.Book"/>
+<fullyQualifiedTypeName name="de.NDN.app.writeInvoice.document.print.DocumentInvoicePrintable"/>
+<fullyQualifiedTypeName name="de.NDN.app.writeInvoice.WriteInvoiceModel"/>
+<fullyQualifiedTypeName name="java.awt.print.PageFormat"/>
+<fullyQualifiedTypeName name="java.awt.print.Paper"/>
+<fullyQualifiedTypeName name="java.awt.Graphics2D"/>
+<fullyQualifiedTypeName name="java.awt.Graphics"/>
+<fullyQualifiedTypeName name="com.sun.javafx.geom.Shape"/>
+<fullyQualifiedTypeName name="java.awt.geom.Line2D.Double"/>
+<fullyQualifiedTypeName name="java.awt.geom.Line2D"/>
+<fullyQualifiedTypeName name="java.awt.geom.Rectangle2D"/>
+<fullyQualifiedTypeName name="java.awt.Shape"/>
+<fullyQualifiedTypeName name="javax.imageio.ImageIO"/>
+<fullyQualifiedTypeName name="java.net.URL"/>
+<fullyQualifiedTypeName name="javafx.scene.image.Image"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.awt.Image"/>
+<fullyQualifiedTypeName name="javax.swing.ImageIcon"/>
+<fullyQualifiedTypeName name="java.awt.image.BufferedImage"/>
+<fullyQualifiedTypeName name="java.awt.Toolkit"/>
 </qualifiedTypeNameHistroy>

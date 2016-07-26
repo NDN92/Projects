@@ -14,7 +14,7 @@ public class CompanyHeader {
 	private String web;
 	
 	public CompanyHeader() {
-		this.companyLogoURL = de.NDN.app.NDN_Rechnungsprogramm.class.getResource("").toExternalForm() + "images/testLogo.jpg";
+		this.companyLogoURL = de.NDN.app.NDN_Rechnungsprogramm.class.getResource("").toExternalForm() + "images/companyLogo.png";
 		this.companyAddress = new Address();
 		this.companyAddress.setCompanyName("Malerbetrieb Roland Nowak");
 		this.companyAddress.setStreet("Hauweg");

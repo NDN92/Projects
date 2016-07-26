@@ -10,6 +10,9 @@ window.onload = function () {
 	document.getElementById("btnZoomOut").addEventListener('click', function () {
 		wInv.zoomOutViewPage();
 	});
+	document.getElementById("btnPrint").addEventListener('click', function () {
+		wInv.printDocument();
+	});
 	
 	docL.setDefaults();
 };
@@ -31,25 +34,24 @@ function setPageSize(pageWidth, pageHeight) {
 function setPrintableArea(topMargin, rightMargin, bottomMargin, leftMargin) {
 	document.getElementById('viewPage').style.padding = topMargin + 'px ' +  rightMargin + 'px ' + bottomMargin + 'px ' + leftMargin + 'px';
 }
-function setCompanyHeader(height, logoURL) {
+function setCompanyHeader(logoHeight, logoURL, logoX, logoY, hrHeight, hrWidth, hrX, hrY) {
 	var root = document.getElementById('viewPagePrintableArea');
 	
-	var divEl = document.createElement('div');
-	divEl.setAttribute('id', 'companyHeader');
-	divEl.style.height = height + 'px';
-	
-	var logo = document.createElement('div');
+	var logo = document.createElement('img');
 	logo.setAttribute('id', 'companyLogo');
-	logo.style.height = height + 'px';
-	logo.style.backgroundImage = "url('" + logoURL + "')";	
-	divEl.appendChild(logo);	
-	root.appendChild(divEl)
+	logo.setAttribute('src', logoURL)
+	logo.style.height = logoHeight + 'px';
+	logo.style.marginTop = logoY + 'px';
+	logo.style.marginLeft = logoX + 'px';
+	root.appendChild(logo)
 	
-	var line = document.createElement('hr');
-	line.setAttribute('id', 'lineSeparator');
-	root.appendChild(line);
-	
-	
+	var hr = document.createElement('hr');
+	hr.setAttribute('id', 'hrSeparator');
+	hr.style.border = hrHeight + 'px solid #000';
+	hr.style.width = hrWidth + 'px';
+	hr.style.marginTop = hrY + 'px';
+	hr.style.marginLeft = hrX + 'px';
+	root.appendChild(hr);	
 }
 
 //Interface Getter

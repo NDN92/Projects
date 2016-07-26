@@ -1,5 +1,0 @@
-package de.NDN.app.writeInvoice;
-
-public interface WriteInvoiceJsInterface {
-
-}

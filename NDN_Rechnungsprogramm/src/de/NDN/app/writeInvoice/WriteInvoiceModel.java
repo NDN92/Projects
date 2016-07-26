@@ -1,8 +1,11 @@
 package de.NDN.app.writeInvoice;
 
+import java.awt.print.PrinterJob;
+
 import de.NDN.app.globalObjects.CustomerType;
 import de.NDN.app.writeInvoice.document.DocumentInvoice;
 import de.NDN.app.writeInvoice.document.DocumentInvoiceFactory;
+import de.NDN.app.writeInvoice.document.print.DocumentInvoicePrinter;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
@@ -18,8 +21,8 @@ public class WriteInvoiceModel {
 	private DocumentInvoice doc;
 	private DocumentInvoiceFactory documentInvoiceFactory;
 	
-	private final int PAGE_WIDTH = 595;
-	private final int PAGE_HEIGHT = 842;	
+	private final double PAGE_WIDTH = PrinterJob.getPrinterJob().defaultPage().getWidth();
+	private final double PAGE_HEIGHT = PrinterJob.getPrinterJob().defaultPage().getHeight();	
 	private final int VIEW_PAGE_ZOOM_INTERVAL = 20;	
 	private final int VIEW_PAGE_ZOOM_MIN = 10;
 	private final int VIEW_PAGE_ZOOM_MAX = 500;
@@ -43,7 +46,7 @@ public class WriteInvoiceModel {
 //      	this.wInvC = new WriteInvoiceController(this.browser, this.engine);
 //      	this.wInvV = new WriteInvoiceView(this.browser, this.engine);
       	
-		this.documentInvoiceFactory = new DocumentInvoiceFactory(this.engine);
+		this.documentInvoiceFactory = new DocumentInvoiceFactory(this.engine, this);
 		this.documentInvoiceFactory.createNewDocument(this.customerType);
 		
       	wInvS.show();
@@ -127,6 +130,11 @@ public class WriteInvoiceModel {
 		this.viewPageFitHeight = true;
 		
 		return newViewPageZoom;
+	}
+	
+	public void printDocument() {
+		DocumentInvoicePrinter test = this.documentInvoiceFactory.getDocumentInvoicePrinter();
+		this.documentInvoiceFactory.getDocumentInvoicePrinter().doPrint();
 	}
 	
 	
@@ -231,14 +239,6 @@ public class WriteInvoiceModel {
 		this.viewPageFitHeight = viewPageFitHeight;
 	}
 
-	public int getPAGE_WIDTH() {
-		return PAGE_WIDTH;
-	}
-
-	public int getPAGE_HEIGHT() {
-		return PAGE_HEIGHT;
-	}
-
 	public int getVIEW_PAGE_ZOOM_INTERVAL() {
 		return VIEW_PAGE_ZOOM_INTERVAL;
 	}
@@ -257,6 +257,14 @@ public class WriteInvoiceModel {
 
 	public int getVIEW_PAGE_MARGIN() {
 		return VIEW_PAGE_MARGIN;
+	}
+
+	public double getPAGE_WIDTH() {
+		return PAGE_WIDTH;
+	}
+
+	public double getPAGE_HEIGHT() {
+		return PAGE_HEIGHT;
 	}
 	
 

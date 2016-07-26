@@ -1,7 +1,0 @@
-/**
- * 
- */
-function transferZoom() {
-	var zoom = window.getComputedStyle(document.getElementById('viewPage')).getPropertyValue('zoom');
-	app.setViewPageZoom(zoom);
-}
