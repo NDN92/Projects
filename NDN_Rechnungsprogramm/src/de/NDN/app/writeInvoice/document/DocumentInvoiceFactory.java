@@ -1,28 +1,15 @@
 package de.NDN.app.writeInvoice.document;
 
 import java.awt.BasicStroke;
-import java.awt.Canvas;
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.MediaTracker;
 import java.awt.Toolkit;
-import java.awt.font.FontRenderContext;
-import java.awt.font.LineMetrics;
 import java.awt.geom.Rectangle2D;
 import java.awt.print.Printable;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 import de.NDN.app.globalObjects.AppFont;
@@ -165,7 +152,7 @@ public class DocumentInvoiceFactory {
 					afX *= pageDpiRatio;
 					afY *= pageDpiRatio;
 				}
-				this.engine.executeScript("setAddressField("
+				this.engine.executeScript("setMultilineTextarea("
 						+ "'" + PageElementId.ADDRESS_FIELD + "', "
 						+ afW + ", "
 						+ afH + ", "
@@ -173,6 +160,7 @@ public class DocumentInvoiceFactory {
 						+ afFont.getSize() + ", "
 						+ "'" + afFont.getColorInHex() + "', "
 						+ afFont.getLineHeight() + ", "
+						+ "'" + "middle" + "', "
 						+ afX + ", "
 						+ afY + ");");
 				
@@ -258,7 +246,7 @@ public class DocumentInvoiceFactory {
 						ihRectWidth + ", " +
 						ihRectHeight + ", " +
 						"'" + this.conv.convertJavaColorToCssColor(ihRectBgColor) + "', " +
-						"'" + ihRectBorder.getLineWidth() + "px solid" + this.conv.convertJavaColorToCssColor(ihRectBorderColor) + "', " +
+						"'" + ihRectBorder.getLineWidth() + "px solid " + this.conv.convertJavaColorToCssColor(ihRectBorderColor) + "', " +
 						ihRectX + ", " +
 						ihRectY + ");"
 				);
@@ -300,6 +288,41 @@ public class DocumentInvoiceFactory {
 				for( int i = 0; i < ((Object[]) invoiceHeaderObj[1]).length; i++) {
 					currentPageTexts.add( (Object[]) ((Object[]) invoiceHeaderObj[1])[i] );
 				}
+				
+				
+				int referenceLineWidth = (int) Math.round(printableAreaWidth);
+				AppFont referenceLineFont = new AppFont(ARIAL_STD, 10, Color.BLACK, 13);
+				int referenceLineHeight = referenceLineFont.getLineHeight();
+				int referenceLineX = 0;
+				int referenceLineY = ihRectY + ihRectHeight + 5;
+				this.engine.executeScript("setMultilineTextarea("
+						+ "'" + PageElementId.REFERENCE_LINE + "', "
+						+ referenceLineWidth + ", "
+						+ referenceLineHeight + ", "
+						+ "'" + referenceLineFont.getName() + "', "
+						+ referenceLineFont.getSize() + ", "
+						+ "'" + referenceLineFont.getColorInHex() + "', "
+						+ referenceLineFont.getLineHeight() + ", "
+						+ "'" + "top" + "', "
+						+ referenceLineX + ", "
+						+ referenceLineY + ");");
+				
+				
+				int rapportHeaderWidth = (int) Math.round(printableAreaWidth);
+				AppFont rapportHeaderFont = new AppFont(ARIAL_BLD, 9, Color.BLACK, 13);
+				int rapportHeaderHeight = rapportHeaderFont.getLineHeight();
+				Color rapportHeaderRectBgColor = ihRectBgColor;
+				BasicStroke rapportHeaderRectBorder = ihRectBorder;
+				Color rapportHeaderRectBorderColor = ihRectBorderColor;
+				int rapportHeaderX = 0;
+				int rapportHeaderY = referenceLineY + referenceLineHeight + 5;
+				this.engine.executeScript("setRectangle("
+						+ rapportHeaderWidth + ", "
+						+ rapportHeaderHeight + ", "
+						+ "'" + this.conv.convertJavaColorToCssColor(rapportHeaderRectBgColor) + "', "
+						+ "'" + rapportHeaderRectBorder.getLineWidth() + "px solid " + this.conv.convertJavaColorToCssColor(rapportHeaderRectBorderColor) + "', "
+						+ rapportHeaderX + ", "
+						+ rapportHeaderY + ");");
 				
 				
 				

@@ -79,11 +79,14 @@ function setText(id, text, fontName, fontSize, color, lineHeight, textX, textY) 
 	textElem.style.marginTop = textY + "px";
 	root.appendChild(textElem);	
 }
-function setAddressField(id, width, height, fontName, fontSize, color, lineHeight, afX, afY) {
+function setMultilineTextarea(id, width, height, fontName, fontSize, color, lineHeight, verticalAlign, afX, afY) {
 	var root = 	document.getElementById('viewPagePrintableArea');
 	
 	var addressFieldWrapper = document.createElement('div');
-	addressFieldWrapper.setAttribute('id', 'addressFieldWrapper');
+	if(id != "") {
+		addressFieldWrapper.setAttribute('id', id + 'Wrapper');
+	}	
+	addressFieldWrapper.setAttribute('class', 'multilineTextareaWrapper');
 	addressFieldWrapper.style.width = width + "px";
 	addressFieldWrapper.style.height = height + "px";
 	addressFieldWrapper.style.marginLeft = afX + "px";
@@ -91,15 +94,17 @@ function setAddressField(id, width, height, fontName, fontSize, color, lineHeigh
 	root.appendChild(addressFieldWrapper);
 	
 	var addressField = document.createElement('div');
-	addressField.setAttribute('id', id);	
+	if(id != "") {
+		addressField.setAttribute('id', id);
+	}	
+	addressField.setAttribute('class', 'multilineTextarea');	
 	addressField.setAttribute('contenteditable', 'true');
 	addressField.style.fontFamily = fontName;
 	addressField.style.fontSize = fontSize + "px";
-	addressField.style.lineHeight = lineHeight + "px";
-//	addressField.style.lineHeight = (fontSize + (fontSize / 3)) + "px";
 	addressField.style.color = color;
+	addressField.style.lineHeight = lineHeight + "px";	
+	addressField.style.verticalAlign = verticalAlign;
 	addressFieldWrapper.appendChild(addressField);
-	
 }
 function setRectangle(width, height, bgColor, border, rectX, rectY) {
 	var root = 	document.getElementById('viewPagePrintableArea');

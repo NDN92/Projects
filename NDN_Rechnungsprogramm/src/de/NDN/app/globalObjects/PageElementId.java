@@ -8,4 +8,5 @@ public interface PageElementId {
 	String CUSTOMER_NUMBER	= "customerNumber";
 	String PAYABLE_DATE		= "payableDate";
 	String WEEK_NUMBER		= "weekNumber";
+	String REFERENCE_LINE	= "referenceLine";
 }

@@ -1,0 +1,6 @@
+package de.NDN.app.globalObjects;
+
+public enum PageElementId {
+	UNDEFINED,
+	ADDRESS_FIELD,
+}

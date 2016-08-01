@@ -1,0 +1,148 @@
+package de.NDN.app.globalObjects;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Toolkit;
+
+public class Converter {
+	
+	public String convertJavaFontStyleToHtmlFontStyle(int style) {
+		switch(style) {
+			case Font.PLAIN: 	return "normal";
+			case Font.ITALIC: 	return "italic";
+			case Font.BOLD:		return "bold";
+			default:			return "normal";
+		}
+	}
+	
+	public String convertJavaColorToCssColor(Color color) {
+		return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
+	}
+	
+	public Color convertCssColorToJavaColor(String color) {
+		return Color.decode(color);
+	}
+	
+	public Object[] getJsExCodeForMultilineSetText(String[][] IdsWithStrings, AppFont font, int firstTextX, int firstTextY, double pageDpiRatio) {
+		int lines = IdsWithStrings.length;
+		String[] jsExCodes = new String[lines];
+		Object[] printObjs = new Object[lines];
+		int fontSize = font.getSize();
+		int lineHeight = font.getLineHeight();
+		
+		if(pageDpiRatio != 1) {
+			fontSize   = (int) Math.round(fontSize   * pageDpiRatio);
+			firstTextX = (int) Math.round(firstTextX * pageDpiRatio);
+			firstTextY = (int) Math.round(firstTextY * pageDpiRatio);
+			lineHeight = (int) Math.round(lineHeight * pageDpiRatio);
+		}
+		
+		for(int i = 0; i < lines; i++) {			
+			jsExCodes[i] =    "setText("
+							+ "'" + IdsWithStrings[i][0] + "', "
+							+ "'" + IdsWithStrings[i][1] + "', "
+							+ "'" + font.getName() + "', "
+							+ fontSize + ", "
+							+ "'" + font.getColorInHex() + "', "
+							+ "'" + lineHeight + "', "
+							+ firstTextX + ", " +
+							+ firstTextY + ");";
+			
+			printObjs[i] = 	new Object[]  	{
+												IdsWithStrings[i][0],
+												IdsWithStrings[i][1],
+												font,
+												firstTextX,
+												fontYOffset(font, firstTextY)
+											};
+			
+			firstTextY += lineHeight;
+		}
+		
+		return new Object[] {jsExCodes, printObjs};		
+	}
+	
+	public Object[] getJsExcodeForInvoiceHeader(Object[][] objs, int labelWidth, AppFont font, int ihX1, int ihX2, int ihY, double pageDpiRatio) {
+		int lines = objs.length / 2;
+		String[] jsExCodes = new String[lines];
+		Object[] printObjs = new Object[objs.length];
+		int fontSize = font.getSize();
+		int lineHeight = font.getLineHeight();
+		
+		if(pageDpiRatio != 1) {
+			fontSize   	= (int) Math.round(fontSize 	* pageDpiRatio);
+			ihX1 		= (int) Math.round(ihX1 		* pageDpiRatio);
+			ihX2 		= (int) Math.round(ihX2 		* pageDpiRatio);
+			ihY 		= (int) Math.round(ihY 			* pageDpiRatio);
+			lineHeight 	= (int) Math.round(lineHeight 	* pageDpiRatio);
+		}
+		
+		int lX = ihX1;
+		int lY = ihY;
+		int vX = lX + labelWidth;
+		int vY = lY;
+		int j = 0;
+		for( int i = 0; i < objs.length; i = i + 2 ) {
+			String labelId 		= (String) objs[i][0];
+			String labelName 	= (String) objs[i][1];
+			String valueId 		= (String) objs[i+1][0];
+			Object value 		= 		   objs[i+1][1];		
+			
+//			if( value instanceof String ) {
+//				value = (String) value;
+//			} else if( value instanceof Integer ){
+//				value = (int) value;
+//			} else if( value instanceof Double ){
+//				value = (double) value;
+//			}
+			
+			jsExCodes[j] = 	  "setLabelWithValue("
+							+ "'" + labelId + "', "
+							+ "'" + labelName + "', "
+							+ "'" + valueId + "', "
+							+ "'" + value.toString() + "', "
+							+ "'" + font.getName() + "', "
+							+ "'" + fontSize + "', "
+							+ "'" + font.getColorInHex() + "', "
+							+ "'" + lineHeight + "', "
+							+ lX + ", "
+							+ lY + ", "
+							+ vX + ", "
+							+ vY + ");";
+			
+			printObjs[i] = 	new Object[] {
+							labelName,
+							font,
+							lX,
+							fontYOffset(font, lY)
+			};
+			printObjs[i+1] = 	new Object[] {
+					value.toString(),
+					font,
+					vX,
+					fontYOffset(font, vY)
+			};
+			
+			if( j % 2 == 0 || j == 0 ) {
+				lX = ihX2;
+				vX = lX + labelWidth;
+			} else {
+				lX = ihX1;
+				lY = lY + lineHeight;
+				vX = lX + labelWidth;
+				vY = lY;
+			}
+			
+			j++;
+		}		
+		
+		return new Object[] {jsExCodes, printObjs};
+	}
+	
+	public int fontYOffset(AppFont font, int y) {		
+		FontMetrics metrics = Toolkit.getDefaultToolkit().getFontMetrics(font.getFont());		
+		return (int) Math.round(y + (font.getSize() - metrics.getDescent()) + Math.round( (font.getLineHeight() - font.getSize() ) / 2.0 ));
+	}
+	
+}

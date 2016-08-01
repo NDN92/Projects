@@ -1,0 +1,6 @@
+package de.NDN.app.globalObjects;
+
+public interface PageElementId {
+	String UNDEFINED 		= "";
+	String ADDRESS_FIELD	= "addressField"
+}
