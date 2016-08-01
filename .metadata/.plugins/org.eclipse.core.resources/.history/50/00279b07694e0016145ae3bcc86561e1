@@ -1,8 +1,0 @@
-package de.NDN.app.globalObjects;
-
-public enum CustomerType {
-	PRIVATE,
-	VOLKSWOHNUNG,
-	HARDTWALDSIEDLUNG,
-	KOMMUNALER_VERSORGUNGSVERBAND
-}

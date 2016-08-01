@@ -1,0 +1,32 @@
+package de.NDN.app.globalObjects;
+
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URLDecoder;
+
+public class AppFont {
+	
+	private String name;
+	private Font font;
+	
+	public AppFont(String appFontName) {
+		this.name = appFontName;
+		
+		String path;
+		Font font = null;
+		try {				
+			path = URLDecoder.decode( ((String) (de.NDN.app.NDN_Rechnungsprogramm.class.getResource("").toExternalForm() + "fonts/" + appFontName + ".ttf")).replace("file:/", ""), "UTF-8");
+			font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream( path ));			
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (FontFormatException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
+
+}

@@ -29,7 +29,9 @@ public class WriteInvoiceStage extends Stage {
 		root.getChildren().add(menuBar);
 		
 		this.browser = new WebView();
+		this.browser.setContextMenuEnabled(false);
 		this.browser.prefHeightProperty().bind(this.heightProperty());
+		
 		this.engine = this.browser.getEngine();
 		
 		//wInvM.setwInvJsI(new WriteInvoiceJsInterfaceImpl(this.engine));

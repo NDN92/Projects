@@ -1,0 +1,11 @@
+package de.NDN.app.globalObjects;
+
+import java.awt.Font;
+
+public class AppFont {
+
+	public AppFont() {
+		
+	}
+
+}

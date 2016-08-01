@@ -5,7 +5,7 @@ import de.NDN.app.globalObjects.LineItem;
 
 public class PageInvoice {
 	
-	private final int printableArea[] = {50, 50, 50, 50};	//Page-Margin Top, Right, Bottom, Left
+	private final double printableArea[] = {28.0, 50.0, 28.0, 50.0};	//Page-Margin Top, Right, Bottom, Left
 	
 	private DocumentInvoice documentInvoice;
 	private int pageNumber;	
@@ -65,7 +65,7 @@ public class PageInvoice {
 		this.lineItems = lineItems;
 	}
 
-	public int[] getPrintableArea() {
+	public double[] getPrintableArea() {
 		return printableArea;
 	}
 	

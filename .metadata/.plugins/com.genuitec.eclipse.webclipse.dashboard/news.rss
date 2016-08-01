@@ -12,12 +12,28 @@
 	<atom:link href="https://www.genuitec.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://www.genuitec.com</link>
 	<description>The Cloud Control Company</description>
-	<lastBuildDate>Thu, 21 Jul 2016 11:11:54 +0000</lastBuildDate>
+	<lastBuildDate>Fri, 29 Jul 2016 16:13:16 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>hourly</sy:updatePeriod>
 	<sy:updateFrequency>1</sy:updateFrequency>
 	<generator>https://wordpress.org/?v=4.5.2</generator>
 	<item>
+		<title>Reduce JavaScript Errors with JSHint</title>
+		<link>https://www.genuitec.com/reduce-javascript-errors-with-jshint/</link>
+		<pubDate>Wed, 27 Jul 2016 14:06:48 +0000</pubDate>
+		<dc:creator><![CDATA[joseruiz]]></dc:creator>
+				<category><![CDATA[Programming Tips]]></category>
+		<category><![CDATA[Webclipse]]></category>
+		<category><![CDATA[JSHint]]></category>
+		<category><![CDATA[programming]]></category>
+		<category><![CDATA[Web Development]]></category>
+
+		<guid isPermaLink="false">https://www.genuitec.com/?p=491719</guid>
+		<description><![CDATA[<p>JSHint is an open source tool used in software development to analyze JavaScript code and verify that it complies with certain coding rules you established. This powerful tool helps detect errors and issues in your code, plus it forces your team to keep certain coding conventions and style guides resulting in code that is reliable [&#8230;]</p>
+<p>The post <a rel="nofollow" href="https://www.genuitec.com/reduce-javascript-errors-with-jshint/">Reduce JavaScript Errors with JSHint</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
+]]></description>
+		</item>
+		<item>
 		<title>Technical Decisions Are Business Decisions</title>
 		<link>https://www.genuitec.com/technical-decisions-are-business-decisions/</link>
 		<pubDate>Wed, 20 Jul 2016 15:08:23 +0000</pubDate>
@@ -238,29 +254,14 @@
 <p>The post <a rel="nofollow" href="https://www.genuitec.com/eclipse-shortcuts/">Eclipse Shortcuts for a Productive Workflow</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
 ]]></description>
 		</item>
-		<item>
-		<title>Genuitec Turns 15: w00t!</title>
-		<link>https://www.genuitec.com/genuitec-turns-15-w00t/</link>
-		<pubDate>Thu, 09 Jun 2016 16:35:05 +0000</pubDate>
-		<dc:creator><![CDATA[wayne]]></dc:creator>
-				<category><![CDATA[General]]></category>
-		<category><![CDATA[Genuitec]]></category>
-		<category><![CDATA[Opinion]]></category>
-		<category><![CDATA[Thought Leadership]]></category>
-
-		<guid isPermaLink="false">https://www.genuitec.com/?p=485431</guid>
-		<description><![CDATA[<p>Hi, this is Wayne, one of the Genuitec founders. This is a special week as Genuitec celebrates its 15th anniversary. Its been an awesome personal and team adventure serving the Java, web and mobile developer communities with our programming tools and tool management platform. From day #1 our vision has been to provide full-stack JEE [&#8230;]</p>
-<p>The post <a rel="nofollow" href="https://www.genuitec.com/genuitec-turns-15-w00t/">Genuitec Turns 15: w00t!</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
-]]></description>
-		</item>
 	</channel>
 </rss>
 
 <!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
 
 Page Caching using disk: enhanced
-Database Caching using disk
-Object Caching 2565/2687 objects using disk
+Database Caching 6/45 queries in 0.031 seconds using disk
+Object Caching 2582/2701 objects using disk
 Content Delivery Network via resources.cloud.genuitec.com
 
- Served from: www.genuitec.com @ 2016-07-21 06:53:48 by W3 Total Cache -->
+ Served from: www.genuitec.com @ 2016-07-31 10:08:33 by W3 Total Cache -->

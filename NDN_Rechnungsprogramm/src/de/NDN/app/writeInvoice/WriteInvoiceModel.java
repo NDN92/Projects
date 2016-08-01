@@ -1,10 +1,13 @@
 package de.NDN.app.writeInvoice;
 
+import java.awt.print.Printable;
 import java.awt.print.PrinterJob;
+import java.util.ArrayList;
 
 import de.NDN.app.globalObjects.CustomerType;
 import de.NDN.app.writeInvoice.document.DocumentInvoice;
 import de.NDN.app.writeInvoice.document.DocumentInvoiceFactory;
+import de.NDN.app.writeInvoice.document.print.DocumentInvoicePrintable;
 import de.NDN.app.writeInvoice.document.print.DocumentInvoicePrinter;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -21,14 +24,19 @@ public class WriteInvoiceModel {
 	private DocumentInvoice doc;
 	private DocumentInvoiceFactory documentInvoiceFactory;
 	
-	private final double PAGE_WIDTH = PrinterJob.getPrinterJob().defaultPage().getWidth();
-	private final double PAGE_HEIGHT = PrinterJob.getPrinterJob().defaultPage().getHeight();	
+	private final double STD_PAGE_WIDTH = PrinterJob.getPrinterJob().defaultPage().getWidth();
+	private final double STD_PAGE_HEIGHT = PrinterJob.getPrinterJob().defaultPage().getHeight();
+	private final int STD_PAGE_DPI = 72;
 	private final int VIEW_PAGE_ZOOM_INTERVAL = 20;	
 	private final int VIEW_PAGE_ZOOM_MIN = 10;
 	private final int VIEW_PAGE_ZOOM_MAX = 500;
 	private final int VIEW_PAGE_SHADOW_BLUR = 10;
 	private final int VIEW_PAGE_MARGIN = 10;
 	
+	private double pageWidth = this.STD_PAGE_WIDTH;
+	private double pageHeight = this.STD_PAGE_HEIGHT;
+	private int pageDpi = 72;
+	private double pageDpiRatio = ((double) this.pageDpi) / ((double) this.STD_PAGE_DPI);
 	private int viewPageZoom = 100;
 	private boolean viewPageFitWidth = false;
 	private boolean viewPageFitHeight = false;	
@@ -54,10 +62,18 @@ public class WriteInvoiceModel {
 	
 	public void setDefaults() {
 		
-		setViewPageZoom( fitToViewPageHeight(this.viewPageZoom) );
-		this.engine.executeScript("setPageSize(" + this.PAGE_WIDTH + ", " + this.PAGE_HEIGHT + ");");
+		//Adjust Page Resolution
+		if(this.pageDpi != this.STD_PAGE_DPI) {
+			this.pageWidth = this.pageDpiRatio * this.STD_PAGE_WIDTH;
+			this.pageHeight = this.pageDpiRatio * this.STD_PAGE_HEIGHT;
+		}
 		
-		this.documentInvoiceFactory.showDocumentOnViewPage();
+		setViewPageZoom( fitToViewPageHeight(this.viewPageZoom) );
+		this.engine.executeScript("setPageSize(" + this.pageWidth + ", " + this.pageHeight + ");");
+		
+		if( this.documentInvoiceFactory.showDocumentOnViewPage() ) {
+			this.engine.executeScript("setEventListener();");
+		}
 	}
 	
 	public void zoomInViewPage() {
@@ -78,12 +94,12 @@ public class WriteInvoiceModel {
 	}
 	
 	public int checkViewPageFit(int newViewPageZoom) {
-		double oldPageWidth = this.PAGE_WIDTH * (this.viewPageZoom / 100.0);
-		double newPageWidth = this.PAGE_WIDTH * (newViewPageZoom / 100.0);
+		double oldPageWidth = this.pageWidth * (this.viewPageZoom / 100.0);
+		double newPageWidth = this.pageWidth * (newViewPageZoom / 100.0);
 		int width = this.wInvJsI.getViewPageWrapperWidth();		
 		
 		if(width > oldPageWidth && width < newPageWidth && !this.viewPageFitWidth) {
-			double zoom = ( (width - 40.0) / this.PAGE_WIDTH ) * 100 ;
+			double zoom = ( (width - 40.0) / this.pageWidth ) * 100 ;
 			newViewPageZoom = (int) zoom;
 			this.viewPageFitWidth = true;
 		} else {
@@ -94,12 +110,12 @@ public class WriteInvoiceModel {
 			}
 			
 			
-			double oldPageHeight = this.PAGE_HEIGHT * (this.viewPageZoom / 100.0);
-			double newPageHeight = this.PAGE_HEIGHT * (newViewPageZoom / 100.0);
+			double oldPageHeight = this.pageHeight * (this.viewPageZoom / 100.0);
+			double newPageHeight = this.pageHeight * (newViewPageZoom / 100.0);
 			int height = this.wInvJsI.getViewPageWrapperHeight();
 			
 			if(height > oldPageHeight && height < newPageHeight && !this.viewPageFitHeight) {
-				double zoom = ( (height - 40.0) / this.PAGE_HEIGHT ) * 100 ;
+				double zoom = ( (height - 40.0) / this.pageHeight ) * 100 ;
 				newViewPageZoom = (int) zoom;
 				this.viewPageFitHeight = true;
 			} else {
@@ -116,7 +132,7 @@ public class WriteInvoiceModel {
 	
 	private int fitViewToPageWidth(int newViewPageZoom) {
 		int width = this.wInvJsI.getViewPageWrapperWidth();		
-		double zoom = ( (width - 40.0) / this.PAGE_WIDTH ) * 100 ;
+		double zoom = ( (width - 40.0) / this.pageWidth ) * 100 ;
 		newViewPageZoom = (int) zoom;
 		this.viewPageFitWidth = true;
 		
@@ -125,7 +141,7 @@ public class WriteInvoiceModel {
 	
 	private int fitToViewPageHeight(int newViewPageZoom) {
 		int height = this.wInvJsI.getViewPageWrapperHeight();
-		double zoom = ( (height - 40.0) / this.PAGE_HEIGHT ) * 100 ;
+		double zoom = ( (height - 40.0) / this.pageHeight ) * 100 ;
 		newViewPageZoom = (int) zoom;
 		this.viewPageFitHeight = true;
 		
@@ -137,7 +153,72 @@ public class WriteInvoiceModel {
 		this.documentInvoiceFactory.getDocumentInvoicePrinter().doPrint();
 	}
 	
+	public void updateText(String id, String newText) {
+		ArrayList<Printable> printableDocuments = this.documentInvoiceFactory.getPrintableDocuments();
+		for(Printable doc : printableDocuments) {
+			ArrayList<Object[]> newPageTexts = ((DocumentInvoicePrintable) doc).getPageTexts();			
+			for(int i = 0; i < newPageTexts.size(); i++) {
+				Object[] textElem = newPageTexts.get(i);
+				if( ((String) textElem[0]).contains(id) ) {
+					newPageTexts.get(i)[1] = newText;
+					break;
+				}
+			}
+			((DocumentInvoicePrintable) doc).setPageTexts(newPageTexts);
+		}
+	}
+	public void updateAddressField(String id, String newText, String wrapper) {
+		ArrayList<Printable> printableDocuments = this.documentInvoiceFactory.getPrintableDocuments();
+		for(Printable doc : printableDocuments) {
+			ArrayList<Object[]> newPageTexts = ((DocumentInvoicePrintable) doc).getPageTexts();			
+			for(int i = 0; i < newPageTexts.size(); i++) {
+				Object[] textElem = newPageTexts.get(i);
+				if( ((String) textElem[0]).contains(id) ) {
+					newPageTexts.remove(i);
+					i--;
+				}
+			}
+			((DocumentInvoicePrintable) doc).setPageTexts(newPageTexts);
+		}
+		
+		ArrayList<String> texts = new ArrayList<String>();
+		newText = newText.replace("&nbsp;", " ");		
+		if(newText.contains("<br>")) {
+			String text;
+			while( newText.contains("<br>") ) {
+				text = newText.substring(0, newText.indexOf("<br>"));
+				texts.add(text);
+				newText = newText.substring(newText.indexOf("<br>") + 4, newText.length());
+			}
+			texts.add(newText);
+		} else {
+			texts.add(newText);
+		}
+		
+		
+		this.documentInvoiceFactory.setAddressField(texts);
+	}
 	
+	public String getAttrValue(String attr, String htmlCode, String type) {
+		String val = htmlCode;
+		
+		int index1 = val.indexOf(attr);
+		val = val.substring(index1);
+		int index21 = val.indexOf(";");
+		int index22 = val.indexOf("\"");		
+		if( index21 < index22 ) val = val.substring(0, index21);
+		else val = val.substring(0, index22);
+		val = val.replace(attr, "");
+		val = val.replace(":", "");
+		val = val.trim();
+		if(type.equals("int")) {
+			val = val.replace("px", "");
+		}
+		return val;
+	}
+	
+	
+	//Getter and Setter
 	public int getViewPageZoom() {
 		return viewPageZoom;
 	}
@@ -259,12 +340,48 @@ public class WriteInvoiceModel {
 		return VIEW_PAGE_MARGIN;
 	}
 
-	public double getPAGE_WIDTH() {
-		return PAGE_WIDTH;
+	public double getPageWidth() {
+		return pageWidth;
 	}
 
-	public double getPAGE_HEIGHT() {
-		return PAGE_HEIGHT;
+	public void setPageWidth(double pageWidth) {
+		this.pageWidth = pageWidth;
+	}
+
+	public double getPageHeight() {
+		return pageHeight;
+	}
+
+	public void setPageHeight(double pageHeight) {
+		this.pageHeight = pageHeight;
+	}
+
+	public int getPageDpi() {
+		return pageDpi;
+	}
+
+	public void setPageDpi(int pageDpi) {
+		this.pageDpi = pageDpi;
+	}
+
+	public double getSTD_PAGE_WIDTH() {
+		return STD_PAGE_WIDTH;
+	}
+
+	public double getSTD_PAGE_HEIGHT() {
+		return STD_PAGE_HEIGHT;
+	}
+
+	public int getSTD_PAGE_DPI() {
+		return STD_PAGE_DPI;
+	}
+
+	public double getPageDpiRatio() {
+		return pageDpiRatio;
+	}
+
+	public void setPageDpiRatio(double pageDpiRatio) {
+		this.pageDpiRatio = pageDpiRatio;
 	}
 	
 

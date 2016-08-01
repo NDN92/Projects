@@ -16,6 +16,15 @@ window.onload = function () {
 	
 	docL.setDefaults();
 };
+function setEventListener() {
+	document.getElementById("addressField").addEventListener('focusout', function () {
+		wInv.updateAddressField(this.id, this.innerHTML, this.parentElement.outerHTML);
+	});
+	document.getElementById("weekNumber").addEventListener('focusout', function () {
+		wInv.updateText(this.id, this.innerHTML);
+	});
+}
+
 
 
 //View
@@ -41,17 +50,104 @@ function setCompanyHeader(logoHeight, logoURL, logoX, logoY, hrHeight, hrWidth, 
 	logo.setAttribute('id', 'companyLogo');
 	logo.setAttribute('src', logoURL)
 	logo.style.height = logoHeight + 'px';
-	logo.style.marginTop = logoY + 'px';
 	logo.style.marginLeft = logoX + 'px';
+	logo.style.marginTop = logoY + 'px';	
 	root.appendChild(logo)
 	
 	var hr = document.createElement('hr');
 	hr.setAttribute('id', 'hrSeparator');
 	hr.style.border = hrHeight + 'px solid #000';
 	hr.style.width = hrWidth + 'px';
-	hr.style.marginTop = hrY + 'px';
 	hr.style.marginLeft = hrX + 'px';
+	hr.style.marginTop = hrY + 'px';	
 	root.appendChild(hr);	
+}
+function setText(id, text, fontName, fontSize, color, lineHeight, textX, textY) {
+	var root = 	document.getElementById('viewPagePrintableArea');
+	
+	var textElem = document.createElement('span');
+	if(id != "") {
+		textElem.setAttribute('id', id);
+	}
+	textElem.setAttribute('class', 'textElem');
+	textElem.innerHTML = text;
+	textElem.style.fontFamily = fontName;
+	textElem.style.fontSize = fontSize + "px";
+	textElem.style.lineHeight = lineHeight + "px";
+	textElem.style.color = color;
+	textElem.style.marginLeft = textX + "px";
+	textElem.style.marginTop = textY + "px";
+	root.appendChild(textElem);	
+}
+function setAddressField(id, width, height, fontName, fontSize, color, lineHeight, afX, afY) {
+	var root = 	document.getElementById('viewPagePrintableArea');
+	
+	var addressFieldWrapper = document.createElement('div');
+	addressFieldWrapper.setAttribute('id', 'addressFieldWrapper');
+	addressFieldWrapper.style.width = width + "px";
+	addressFieldWrapper.style.height = height + "px";
+	addressFieldWrapper.style.marginLeft = afX + "px";
+	addressFieldWrapper.style.marginTop = afY + "px";
+	root.appendChild(addressFieldWrapper);
+	
+	var addressField = document.createElement('div');
+	addressField.setAttribute('id', id);	
+	addressField.setAttribute('contenteditable', 'true');
+	addressField.style.fontFamily = fontName;
+	addressField.style.fontSize = fontSize + "px";
+	addressField.style.lineHeight = lineHeight + "px";
+//	addressField.style.lineHeight = (fontSize + (fontSize / 3)) + "px";
+	addressField.style.color = color;
+	addressFieldWrapper.appendChild(addressField);
+	
+}
+function setRectangle(width, height, bgColor, border, rectX, rectY) {
+	var root = 	document.getElementById('viewPagePrintableArea');
+	
+	var rect = document.createElement('div');
+	rect.setAttribute('class', 'rectangle');
+	rect.style.width = width + 'px';
+	rect.style.height = height + 'px';
+	rect.style.backgroundColor = bgColor;
+	rect.style.border = border;
+	rect.style.marginLeft = rectX + "px";
+	rect.style.marginTop = rectY + "px";
+	root.appendChild(rect);
+}
+function setLabelWithValue(labelId, labelName, valueId, valueContent, fontName, fontSize, color, lineHeight, lX, lY, vX, vY) {
+	var root = 	document.getElementById('viewPagePrintableArea');
+	
+	var lbl = document.createElement('span');
+	if(labelId != "") {
+		lbl.setAttribute('id', labelId);
+	}	
+	lbl.setAttribute('class', 'labels');
+	lbl.innerHTML = labelName;
+	lbl.style.fontFamily = fontName;
+	lbl.style.fontSize = fontSize + "px";
+	lbl.style.color = color;
+	lbl.style.lineHeight = lineHeight + "px";
+	lbl.style.marginLeft = lX + "px";
+	lbl.style.marginTop = lY + "px";
+	root.appendChild(lbl);
+	
+	var value = document.createElement('div');
+	if(valueId != "") {
+		value.setAttribute('id', valueId);
+	}	
+	value.setAttribute('class', 'labelvalues');
+	value.innerHTML = valueContent;
+	value.style.fontFamily = fontName;
+	value.style.fontSize = fontSize + "px";
+	value.style.color = color;
+	value.style.lineHeight = lineHeight + "px";
+	value.style.marginLeft = vX + "px";
+	value.style.marginTop = vY + "px";
+	if(valueContent == -1) {
+		value.className += " selectable";
+		value.setAttribute('contenteditable', 'true');		
+	}
+	root.appendChild(value);	
 }
 
 //Interface Getter

@@ -1,9 +1,0 @@
-package de.NDN.app;
-
-public class Page {
-	
-	public Page() {
-		
-	}
-	
-}

@@ -13,7 +13,7 @@ public class DocumentInvoicePrinter {
 	private Book book;
 	private ArrayList<Printable> printableDocuments;
 	private double pageSize[];
-	private int printableArea[];
+	private double printableArea[];
 	private double printableAreaWidth;
 	private double printableAreaHeight;	
 	
@@ -23,6 +23,7 @@ public class DocumentInvoicePrinter {
 	
 	public void doPrint() {
 		PrinterJob job = PrinterJob.getPrinterJob();
+		job.setJobName("Rechnung");
 		
 		PageFormat pf = job.defaultPage();		
 		if(this.printableArea != null && this.pageSize != null) {
@@ -66,11 +67,11 @@ public class DocumentInvoicePrinter {
 		this.printableDocuments = printableDocuments;
 	}
 
-	public int[] getPrintableArea() {
+	public double[] getPrintableArea() {
 		return printableArea;
 	}
 
-	public void setPrintableArea(int[] printableArea) {
+	public void setPrintableArea(double[] printableArea) {
 		this.printableArea = printableArea;
 	}
 

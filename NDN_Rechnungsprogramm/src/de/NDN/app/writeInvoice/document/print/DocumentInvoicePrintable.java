@@ -1,22 +1,29 @@
 package de.NDN.app.writeInvoice.document.print;
 
+import java.awt.BasicStroke;
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.MediaTracker;
 import java.awt.Shape;
-import java.awt.Toolkit;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
+import de.NDN.app.globalObjects.AppFont;
+
 
 public class DocumentInvoicePrintable implements Printable {
 	
-	private ArrayList<Shape> pageShapes;
-	private ArrayList<Image> pageImages;
-	
+	private ArrayList<Object[]> pageShapes;
+	private ArrayList<Object[]> pageImages;
+	private ArrayList<Object[]> pageTexts;	
+
+
 	@Override
 	public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {		
 		if (pageIndex > 0) {
@@ -24,21 +31,79 @@ public class DocumentInvoicePrintable implements Printable {
 	    }
 		
 		Graphics2D graphics2D = (Graphics2D) graphics;
-		double a = pageFormat.getImageableX();
-		double b = pageFormat.getImageableY();
 		graphics2D.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
 		
-		for(Shape shape : pageShapes) {
+		for(Object[] ShapeAndInfos : this.pageShapes) {
+			
+			//"Unpack" and convert ShapeAndInfos
+			String id	 = (String) ShapeAndInfos[0];
+			Shape  shape = (Shape) 	ShapeAndInfos[1];
+			Color  color = (Color)	ShapeAndInfos[2];
+			
+			if(color != null) {
+				graphics2D.setPaint(color);
+				graphics2D.fill(shape);
+			}
+			
+			if(ShapeAndInfos.length == 5) {
+				BasicStroke stroke = (BasicStroke) ShapeAndInfos[3];
+				Color strokeColor  = (Color)       ShapeAndInfos[4];
+				
+				graphics2D.setPaint(strokeColor);
+				graphics2D.setStroke(stroke);
+			}
+			
 			graphics2D.draw(shape);
+			
 		}
-		for(Image image : pageImages) {
-			int w = image.getWidth(null);
-			int h = image.getHeight(null);
-			if( w != -1 && w != 0 && h != -1 && h != 0 ) {
-//				int imgWidth = image.getWidth(null);
-//				int imgHeight = image.getHeight(null);
-				graphics2D.drawImage(image, 0, 0, 200, 50, null);
+		for(Object[] imgAndInfos : this.pageImages) {
+			
+			//"Unpack" and convert imgAndInfos
+			String id				= 	(String) imgAndInfos[0];
+			Image  image 			= 	(Image)  imgAndInfos[1];
+			int    desiredImgWidth 	= 	(int) 	 imgAndInfos[2];
+			int    desiredImgHeight = 	(int) 	 imgAndInfos[3];
+			int    imgX 			=	(int)	 imgAndInfos[4];
+			int    imgY 			=	(int)	 imgAndInfos[5];
+			
+			
+			MediaTracker tracker = new MediaTracker( new Canvas() );
+			tracker.addImage(image, 0);			
+			try {
+				tracker.waitForID(0);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}	
+			
+			int fullImgWidth = image.getWidth(null);
+			int fullImgHeight = image.getHeight(null);
+			
+			if( fullImgWidth != -1 && fullImgWidth != 0 && fullImgHeight != -1 && fullImgHeight != 0 ) {
+				
+				double ratio = ((double) fullImgWidth) / ((double) fullImgHeight);				
+				
+				if( desiredImgWidth == -1 && desiredImgHeight == -1) {
+					System.out.println("Fehler!");
+					continue;
+				}
+				else if( desiredImgWidth == -1 ) 	desiredImgWidth = (int) Math.round( ((double) desiredImgHeight) * ratio);
+				else if( desiredImgHeight == -1 )	desiredImgHeight = (int) Math.round( ((double) desiredImgWidth) / ratio);				
+				
+				graphics2D.drawImage(image, imgX, imgY, desiredImgWidth, desiredImgHeight, null);
 			}			
+		}
+		for(Object[] textAndInfos : this.pageTexts) {
+			
+			//"Unpack" and convert textAndInfos
+			String  id 		= (String)	textAndInfos[0];
+			String 	text 	= (String) 	textAndInfos[1];
+			AppFont	font 	= (AppFont) textAndInfos[2];
+			int 	textX 	= (int) 	textAndInfos[3];
+			int 	textY 	= (int) 	textAndInfos[4];
+			
+			graphics2D.setPaint(font.getColor());
+			graphics2D.setFont(font.getFont());
+			graphics2D.drawString(text, textX, textY);
 		}
 		
 		
@@ -53,21 +118,31 @@ public class DocumentInvoicePrintable implements Printable {
 		
 		return Printable.PAGE_EXISTS;
 	}
+	
 
-	public ArrayList<Shape> getPageShapes() {
+	
+	public ArrayList<Object[]> getPageShapes() {
 		return pageShapes;
 	}
 
-	public void setPageShapes(ArrayList<Shape> pageShapes) {
+	public void setPageShapes(ArrayList<Object[]> pageShapes) {
 		this.pageShapes = pageShapes;
 	}
 
-	public ArrayList<Image> getPageImages() {
+	public ArrayList<Object[]> getPageImages() {
 		return pageImages;
 	}
 
-	public void setPageImages(ArrayList<Image> pageImages) {
+	public void setPageImages(ArrayList<Object[]> pageImages) {
 		this.pageImages = pageImages;
+	}
+	
+	public ArrayList<Object[]> getPageTexts() {
+		return pageTexts;
+	}
+
+	public void setPageTexts(ArrayList<Object[]> pageTexts) {
+		this.pageTexts = pageTexts;
 	}
 
 }

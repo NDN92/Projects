@@ -1,17 +1,21 @@
 package de.NDN.app.writeInvoice.document;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import de.NDN.app.globalObjects.Address;
 
 public class InvoiceHeader {
 	
 	private Address customerAddress;
-	private int customerNumber;
-	private int invoiceNumber;
+	private String customerNumber;
+	private String invoiceNumber;
 	private Date invoiceDate;
 	//Woche in der die Leistung erbracht wurde
 	private int weekNumber;
+	private Date payableDate;
 	
 	//Volkswohnung-spezifische Attribute
 	private String vwJobNumber;
@@ -29,7 +33,12 @@ public class InvoiceHeader {
 	private String zvkFlatLocation;
 	
 	public InvoiceHeader() {
-		
+		this.invoiceNumber = "2016-0001";
+		this.customerNumber = "10001";		
+		Calendar calendar = new GregorianCalendar();		
+		this.invoiceDate = calendar.getTime();
+		calendar.add(Calendar.DAY_OF_MONTH, 7);
+		this.payableDate = calendar.getTime();
 	}
 
 	public Address getCustomerAddress() {
@@ -40,19 +49,19 @@ public class InvoiceHeader {
 		this.customerAddress = customerAddress;
 	}
 
-	public int getCustomerNumber() {
+	public String getCustomerNumber() {
 		return customerNumber;
 	}
 
-	public void setCustomerNumber(int customerNumber) {
+	public void setCustomerNumber(String customerNumber) {
 		this.customerNumber = customerNumber;
 	}
 
-	public int getInvoiceNumber() {
+	public String getInvoiceNumber() {
 		return invoiceNumber;
 	}
 
-	public void setInvoiceNumber(int invoiceNumber) {
+	public void setInvoiceNumber(String invoiceNumber) {
 		this.invoiceNumber = invoiceNumber;
 	}
 
@@ -70,6 +79,14 @@ public class InvoiceHeader {
 
 	public void setWeekNumber(int weekNumber) {
 		this.weekNumber = weekNumber;
+	}
+
+	public Date getPayableDate() {
+		return payableDate;
+	}
+
+	public void setPayableDate(Date payableDate) {
+		this.payableDate = payableDate;
 	}
 
 	public String getVwJobNumber() {
