@@ -2,6 +2,7 @@ package de.NDN.app.writeInvoice.document;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.FontMetrics;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.geom.Rectangle2D;
@@ -15,7 +16,9 @@ import java.util.Date;
 import de.NDN.app.globalObjects.AppFont;
 import de.NDN.app.globalObjects.Converter;
 import de.NDN.app.globalObjects.CustomerType;
+import de.NDN.app.globalObjects.PageElementClassNames;
 import de.NDN.app.globalObjects.PageElementId;
+import de.NDN.app.globalObjects.RapportAttributes;
 import de.NDN.app.writeInvoice.WriteInvoiceModel;
 import de.NDN.app.writeInvoice.document.print.DocumentInvoicePrintable;
 import de.NDN.app.writeInvoice.document.print.DocumentInvoicePrinter;
@@ -34,6 +37,8 @@ public class DocumentInvoiceFactory {
 	private final double ADDRESS_FIELD_WIDTH = 241;
 	private final double ADDRESS_FIELD_HEIGHT = 113;
 	private final AppFont ADDRESS_FIELD_FONT = new AppFont(ARIAL_STD, 16, Color.BLACK, 20);
+	
+	
 	
 	private DocumentInvoice doc;
 	private WebEngine engine;
@@ -242,13 +247,15 @@ public class DocumentInvoiceFactory {
 						- Math.round( (ihLabelsAndValuesFont.getLineHeight() - ihLabelsAndValuesFont.getSize() ) / 2.0 )  //Wichtig, da der Text über die ganze lineHeight vertikal zentriert wird
 						+ ihHeadlineX 
 				);
-				this.engine.executeScript("setRectangle(" +
-						ihRectWidth + ", " +
-						ihRectHeight + ", " +
-						"'" + this.conv.convertJavaColorToCssColor(ihRectBgColor) + "', " +
-						"'" + ihRectBorder.getLineWidth() + "px solid " + this.conv.convertJavaColorToCssColor(ihRectBorderColor) + "', " +
-						ihRectX + ", " +
-						ihRectY + ");"
+				this.engine.executeScript("setRectangle("
+						+ "'', "
+						+ "'', "
+						+ ihRectWidth + ", "
+						+ ihRectHeight + ", "
+						+ "'" + this.conv.convertJavaColorToCssColor(ihRectBgColor) + "', "
+						+ "'" + ihRectBorder.getLineWidth() + "px solid " + this.conv.convertJavaColorToCssColor(ihRectBorderColor) + "', "
+						+ ihRectX + ", " +
+						+ ihRectY + ");"
 				);
 				Rectangle2D.Double ihRect = new Rectangle2D.Double();
 				ihRect.setRect(	ihRectX + ((int) Math.round(ihRectBorder.getLineWidth() / 2.0)), 
@@ -259,6 +266,7 @@ public class DocumentInvoiceFactory {
 				
 				this.engine.executeScript("setText("
 						+ "'" + PageElementId.UNDEFINED + "', "
+						+ "'', "
 						+ "'" + ihHeadline + "', "
 						+ "'" + ihHeadlineFont.getName() + "', "
 						+ 	    ihHeadlineFont.getSize() + ", "
@@ -309,21 +317,104 @@ public class DocumentInvoiceFactory {
 				
 				
 				int rapportHeaderWidth = (int) Math.round(printableAreaWidth);
-				AppFont rapportHeaderFont = new AppFont(ARIAL_BLD, 9, Color.BLACK, 13);
-				int rapportHeaderHeight = rapportHeaderFont.getLineHeight();
+				AppFont rapportHeaderFont = new AppFont(ARIAL_BLD, 8, Color.BLACK, 13);
+				int rapportHeaderHeight = rapportHeaderFont.getLineHeight() + 5;
 				Color rapportHeaderRectBgColor = ihRectBgColor;
 				BasicStroke rapportHeaderRectBorder = ihRectBorder;
 				Color rapportHeaderRectBorderColor = ihRectBorderColor;
 				int rapportHeaderX = 0;
 				int rapportHeaderY = referenceLineY + referenceLineHeight + 5;
 				this.engine.executeScript("setRectangle("
+						+ "'" + PageElementId.UNDEFINED + "', "
+						+ "'" + PageElementClassNames.MOVABLE_DUE_REF_LINE + "', "
 						+ rapportHeaderWidth + ", "
 						+ rapportHeaderHeight + ", "
 						+ "'" + this.conv.convertJavaColorToCssColor(rapportHeaderRectBgColor) + "', "
 						+ "'" + rapportHeaderRectBorder.getLineWidth() + "px solid " + this.conv.convertJavaColorToCssColor(rapportHeaderRectBorderColor) + "', "
 						+ rapportHeaderX + ", "
 						+ rapportHeaderY + ");");
-				
+				FontMetrics fmRapportHeaderAttr = Toolkit.getDefaultToolkit().getFontMetrics(rapportHeaderFont.getFont());
+				int rapportHeaderAttrSpace = 3;
+				int moneyAttrMaxWidth = fmRapportHeaderAttr.stringWidth("WWW.WWW,WW €");
+				int unitAttrMaxWidth = fmRapportHeaderAttr.stringWidth("WWWWWWWWWW");
+				int	rapportHeaderAttrLineHeight = rapportHeaderHeight;
+				int rapportHeaderAttrY = rapportHeaderY;
+				int rapportHeaderPosX = textMargin1;
+				this.engine.executeScript("setText("
+						+ "'" + PageElementId.UNDEFINED + "', "
+						+ "'" + PageElementClassNames.MOVABLE_DUE_REF_LINE + "', "
+						+ "'" + RapportAttributes.POSITION + "', "
+						+ "'" + rapportHeaderFont.getName() + "', "
+						+ 	    rapportHeaderFont.getSize() + ", "
+						+ "'" + rapportHeaderFont.getColorInHex() + "', "
+						+ 	    rapportHeaderAttrLineHeight + ", "
+						+ 	    rapportHeaderPosX + ", "
+						+ 	    rapportHeaderAttrY + ");"
+				);
+				int rapportHeaderDescX 	= 50;
+				this.engine.executeScript("setText("
+						+ "'" + PageElementId.UNDEFINED + "', "
+						+ "'" + PageElementClassNames.MOVABLE_DUE_REF_LINE + "', "
+						+ "'" + RapportAttributes.DESCRIPTION + "', "
+						+ "'" + rapportHeaderFont.getName() + "', "
+						+ 	    rapportHeaderFont.getSize() + ", "
+						+ "'" + rapportHeaderFont.getColorInHex() + "', "
+						+ 	    rapportHeaderAttrLineHeight + ", "
+						+ 	    rapportHeaderDescX + ", "
+						+ 	    rapportHeaderAttrY + ");"
+				);
+				int rapportHeaderTotalStringWidth = fmRapportHeaderAttr.stringWidth(RapportAttributes.TOTAL);
+				int rapportHeaderTotalX = (int) Math.round( (printableAreaWidth - textMargin1) - rapportHeaderTotalStringWidth);
+				this.engine.executeScript("setText("
+						+ "'" + PageElementId.UNDEFINED + "', "
+						+ "'" + PageElementClassNames.MOVABLE_DUE_REF_LINE + "', "
+						+ "'" + RapportAttributes.TOTAL + "', "
+						+ "'" + rapportHeaderFont.getName() + "', "
+						+ 	    rapportHeaderFont.getSize() + ", "
+						+ "'" + rapportHeaderFont.getColorInHex() + "', "
+						+ 	    rapportHeaderAttrLineHeight + ", "
+						+ 	    rapportHeaderTotalX + ", "
+						+ 	    rapportHeaderAttrY + ");"
+				);
+				int rapportHeaderPricePerUnitStringWidth = fmRapportHeaderAttr.stringWidth(RapportAttributes.PRICE_PER_UNIT);
+				int rapportHeaderPricePerUnitX = rapportHeaderTotalX + rapportHeaderTotalStringWidth - rapportHeaderAttrSpace - moneyAttrMaxWidth - rapportHeaderPricePerUnitStringWidth;
+				this.engine.executeScript("setText("
+						+ "'" + PageElementId.UNDEFINED + "', "
+						+ "'" + PageElementClassNames.MOVABLE_DUE_REF_LINE + "', "
+						+ "'" + RapportAttributes.PRICE_PER_UNIT + "', "
+						+ "'" + rapportHeaderFont.getName() + "', "
+						+ 	    rapportHeaderFont.getSize() + ", "
+						+ "'" + rapportHeaderFont.getColorInHex() + "', "
+						+ 	    rapportHeaderAttrLineHeight + ", "
+						+ 	    rapportHeaderPricePerUnitX + ", "
+						+ 	    rapportHeaderAttrY + ");"
+				);
+				int rapportHeaderUnitStringWidth = fmRapportHeaderAttr.stringWidth(RapportAttributes.UNIT);
+				int rapportHeaderUnitX 	= rapportHeaderPricePerUnitX + rapportHeaderPricePerUnitStringWidth - rapportHeaderAttrSpace - unitAttrMaxWidth - rapportHeaderUnitStringWidth;
+				this.engine.executeScript("setText("
+						+ "'" + PageElementId.UNDEFINED + "', "
+						+ "'" + PageElementClassNames.MOVABLE_DUE_REF_LINE + "', "
+						+ "'" + RapportAttributes.UNIT + "', "
+						+ "'" + rapportHeaderFont.getName() + "', "
+						+ 	    rapportHeaderFont.getSize() + ", "
+						+ "'" + rapportHeaderFont.getColorInHex() + "', "
+						+ 	    rapportHeaderAttrLineHeight + ", "
+						+ 	    rapportHeaderUnitX + ", "
+						+ 	    rapportHeaderAttrY + ");"
+				);
+				int rapportHeaderAmountStringWidth = fmRapportHeaderAttr.stringWidth(RapportAttributes.AMOUNT);
+				int rapportHeaderAmountX = rapportHeaderUnitX + rapportHeaderUnitStringWidth - rapportHeaderAttrSpace - moneyAttrMaxWidth + 5 - rapportHeaderAmountStringWidth;
+				this.engine.executeScript("setText("
+						+ "'" + PageElementId.UNDEFINED + "', "
+						+ "'" + PageElementClassNames.MOVABLE_DUE_REF_LINE + "', "
+						+ "'" + RapportAttributes.AMOUNT + "', "
+						+ "'" + rapportHeaderFont.getName() + "', "
+						+ 	    rapportHeaderFont.getSize() + ", "
+						+ "'" + rapportHeaderFont.getColorInHex() + "', "
+						+ 	    rapportHeaderAttrLineHeight + ", "
+						+ 	    rapportHeaderAmountX + ", "
+						+ 	    rapportHeaderAttrY + ");"
+				);
 				
 				
 				currentPrintableDocument.setPageShapes(currentPageShapes);

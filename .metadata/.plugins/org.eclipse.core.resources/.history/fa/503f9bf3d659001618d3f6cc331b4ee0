@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html debug="true">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="../fonts/font-awesome.min.css"/>
+<link rel="stylesheet" href="writeInvoice.css"/>
+<script type="text/javascript" src="writeInvoice.js"></script>
+
+<!-- <script type="text/javascript" src="https://getfirebug.com/firebug-lite-debug.js"></script> -->
+<script type='text/javascript' src='http://getfirebug.com/releases/lite/1.2/firebug-lite-dev.js'></script>
+
+
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="allArea">
+		<div class="tRow">
+			<div class="tCell leftArea">
+				<a id="btnPrint" class="fa fa-print"></a>
+			</div>
+			<div class="tCell rightArea">
+				<div id="viewPageWrapper">
+					<div id="viewPage">
+						<div id="viewPagePrintableArea">
+							
+						</div>					
+					</div>
+				</div>				
+			</div>
+		</div>
+		<div class="tRow">
+			<div class="tCell leftArea viewPageControlsHeight">g</div>
+			<div class="tCell rightArea viewPageControlsHeight viewPageControls">
+				<div id="viewPageControls">
+					<a id="btnZoomIn">+</a>
+					<div id="viewPageZoomDisplayBoard"></div>
+					<a id="btnZoomOut">-</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

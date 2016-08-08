@@ -12,12 +12,47 @@
 	<atom:link href="https://www.genuitec.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://www.genuitec.com</link>
 	<description>The Cloud Control Company</description>
-	<lastBuildDate>Mon, 01 Aug 2016 12:57:49 +0000</lastBuildDate>
+	<lastBuildDate>Mon, 08 Aug 2016 21:06:33 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>hourly</sy:updatePeriod>
 	<sy:updateFrequency>1</sy:updateFrequency>
 	<generator>https://wordpress.org/?v=4.5.2</generator>
 	<item>
+		<title>You&#8217;re Not Nearly as Good as You Think You Are</title>
+		<link>https://www.genuitec.com/youre-not-nearly-as-good-as-you-think-you-are/</link>
+		<pubDate>Wed, 03 Aug 2016 14:02:52 +0000</pubDate>
+		<dc:creator><![CDATA[Todd Williams]]></dc:creator>
+				<category><![CDATA[General]]></category>
+		<category><![CDATA[Genuitec]]></category>
+		<category><![CDATA[Opinion]]></category>
+		<category><![CDATA[Thought Leadership]]></category>
+		<category><![CDATA[leadership]]></category>
+		<category><![CDATA[opinion]]></category>
+
+		<guid isPermaLink="false">https://www.genuitec.com/?p=492493</guid>
+		<description><![CDATA[<p>“Ignorance more frequently begets confidence than does knowledge.”— Charles DarwinYou’re a good driver, right? Better than average you’d say? Pretty smart too I’d wager. Of course smarter than average; I won’t even ask because you’re reading our blog. How about entrepreneurship? I bet you could start a new company and do at least as good [&#8230;]</p>
+<p>The post <a rel="nofollow" href="https://www.genuitec.com/youre-not-nearly-as-good-as-you-think-you-are/">You&#8217;re Not Nearly as Good as You Think You Are</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
+]]></description>
+		</item>
+		<item>
+		<title>Stable With a Side of CI5</title>
+		<link>https://www.genuitec.com/stable-with-a-side-of-ci5/</link>
+		<pubDate>Tue, 02 Aug 2016 18:07:27 +0000</pubDate>
+		<dc:creator><![CDATA[Anabella]]></dc:creator>
+				<category><![CDATA[MyEclipse]]></category>
+		<category><![CDATA[MyEclipse Top News]]></category>
+		<category><![CDATA[codelive]]></category>
+		<category><![CDATA[jsjet]]></category>
+		<category><![CDATA[JSLinter]]></category>
+		<category><![CDATA[livepreview]]></category>
+		<category><![CDATA[Tomcat9]]></category>
+
+		<guid isPermaLink="false">https://www.genuitec.com/?p=492500</guid>
+		<description><![CDATA[<p>The time to move to MyEclipse 2016 is now.After months of very arduous work, MyEclipse 2016 Stable 1.0 is finally here! This is definitely one of the most exciting releases of the year (so far!). Why? Because we not only continued maintaining and improving core Java EE features, but we are also focusing on providing [&#8230;]</p>
+<p>The post <a rel="nofollow" href="https://www.genuitec.com/stable-with-a-side-of-ci5/">Stable With a Side of CI5</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
+]]></description>
+		</item>
+		<item>
 		<title>Reduce JavaScript Errors with JSHint</title>
 		<link>https://www.genuitec.com/reduce-javascript-errors-with-jshint/</link>
 		<pubDate>Wed, 27 Jul 2016 14:06:48 +0000</pubDate>
@@ -226,42 +261,14 @@
 <p>The post <a rel="nofollow" href="https://www.genuitec.com/eclipse-neon-java-editor-gets-more-awesomeness/">Eclipse Neon Java Editor Gets More Awesomeness</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
 ]]></description>
 		</item>
-		<item>
-		<title>Neon is the NEW MARS &#8211; Top 10 Features</title>
-		<link>https://www.genuitec.com/neon-is-the-new-mars-top-10-features/</link>
-		<pubDate>Mon, 20 Jun 2016 14:04:12 +0000</pubDate>
-		<dc:creator><![CDATA[Anabella]]></dc:creator>
-				<category><![CDATA[Eclipse]]></category>
-		<category><![CDATA[Eclipse Mars]]></category>
-		<category><![CDATA[ECLIPSE NEON]]></category>
-
-		<guid isPermaLink="false">https://www.genuitec.com/?p=486178</guid>
-		<description><![CDATA[<p>Just a year ago we were ecstatic about the release of Eclipse Mars. Mars came with really great Java IDE features like a hierarchical view of nested projects, the ability to customize perspectives, speed improvements for text search and just a variety of improvements that many of us were excited about. So why is Neon [&#8230;]</p>
-<p>The post <a rel="nofollow" href="https://www.genuitec.com/neon-is-the-new-mars-top-10-features/">Neon is the NEW MARS &#8211; Top 10 Features</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
-]]></description>
-		</item>
-		<item>
-		<title>Eclipse Shortcuts for a Productive Workflow</title>
-		<link>https://www.genuitec.com/eclipse-shortcuts/</link>
-		<pubDate>Fri, 17 Jun 2016 15:20:42 +0000</pubDate>
-		<dc:creator><![CDATA[vasanthis]]></dc:creator>
-				<category><![CDATA[Eclipse]]></category>
-		<category><![CDATA[MyEclipse]]></category>
-		<category><![CDATA[Planet Eclipse]]></category>
-
-		<guid isPermaLink="false">https://www.genuitec.com/?p=486042</guid>
-		<description><![CDATA[<p>I hope this list of my favorite Eclipse shortcuts will help your workflow become more productive. The shortcuts are divided into the following areas: Navigation General Purpose Editing Java Editor Plug-in Development Workbench Navigation Switching between Open Editors Ctrl + E—Display a filterable list of open editors. Ctrl + Shift + E—Display the Switch to Editor [&#8230;]</p>
-<p>The post <a rel="nofollow" href="https://www.genuitec.com/eclipse-shortcuts/">Eclipse Shortcuts for a Productive Workflow</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
-]]></description>
-		</item>
 	</channel>
 </rss>
 
 <!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
 
 Page Caching using disk: enhanced
-Database Caching using disk
-Object Caching 2571/2713 objects using disk
+Database Caching 3/45 queries in 0.031 seconds using disk
+Object Caching 2591/2717 objects using disk
 Content Delivery Network via resources.cloud.genuitec.com
 
- Served from: www.genuitec.com @ 2016-08-01 08:17:27 by W3 Total Cache -->
+ Served from: www.genuitec.com @ 2016-08-08 16:34:36 by W3 Total Cache -->

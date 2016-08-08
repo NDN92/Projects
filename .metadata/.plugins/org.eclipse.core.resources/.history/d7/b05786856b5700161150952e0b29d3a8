@@ -1,6 +1,0 @@
-package de.NDN.app.globalObjects;
-
-public interface PageElementId {
-	String UNDEFINED = "";
-	ADDRESS_FIELD	
-}

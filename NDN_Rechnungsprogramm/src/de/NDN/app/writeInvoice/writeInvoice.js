@@ -23,8 +23,34 @@ function setEventListener() {
 	document.getElementById("weekNumber").addEventListener('focusout', function () {
 		wInv.updateText(this.id, this.innerHTML);
 	});
+	
+	
+	
+	document.getElementById("referenceLine").addEventListener('keyup', function (e) {		
+		if(e.keyCode == 13) {
+			moveElements(this)
+		}
+	});
+	
+//	var script = document.createElement('script');
+//	script.setAttribute('type', 'text/javascript');
+//	script.setAttribute('src', 'http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js');
+//	document.getElementsByTagName('head')[0].appendChild(script);
 }
 
+
+//Model
+function moveElements(changedElement) {
+	var oldHeight = changedElement.style.height;
+	var newHeight = oldHeight * 2;
+	var offset = newHeight - oldHeight;
+	var elementsToChange = document.getElementsByClassName('movableDueRefLine');
+	for(i = 0; i < elementsToChange.length; i++) {
+		var elemHeight = parseInt(elementsToChange[i].style.height, 10);
+		elemHeight += offset;
+		elementsToChange[i].style.height = elemHeight + 'px';
+	}
+}
 
 
 //View
@@ -62,19 +88,18 @@ function setCompanyHeader(logoHeight, logoURL, logoX, logoY, hrHeight, hrWidth, 
 	hr.style.marginTop = hrY + 'px';	
 	root.appendChild(hr);	
 }
-function setText(id, text, fontName, fontSize, color, lineHeight, textX, textY) {
+function setText(id, className, text, fontName, fontSize, color, lineHeight, textX, textY) {
 	var root = 	document.getElementById('viewPagePrintableArea');
 	
 	var textElem = document.createElement('span');
-	if(id != "") {
-		textElem.setAttribute('id', id);
-	}
+	if(id != "") textElem.setAttribute('id', id);
 	textElem.setAttribute('class', 'textElem');
+	if(className != "") textElem.className += ' ' + className;
 	textElem.innerHTML = text;
 	textElem.style.fontFamily = fontName;
 	textElem.style.fontSize = fontSize + "px";
-	textElem.style.lineHeight = lineHeight + "px";
 	textElem.style.color = color;
+	textElem.style.lineHeight = lineHeight + "px";
 	textElem.style.marginLeft = textX + "px";
 	textElem.style.marginTop = textY + "px";
 	root.appendChild(textElem);	
@@ -83,9 +108,7 @@ function setMultilineTextarea(id, width, height, fontName, fontSize, color, line
 	var root = 	document.getElementById('viewPagePrintableArea');
 	
 	var addressFieldWrapper = document.createElement('div');
-	if(id != "") {
-		addressFieldWrapper.setAttribute('id', id + 'Wrapper');
-	}	
+	if(id != "") addressFieldWrapper.setAttribute('id', id + 'Wrapper');
 	addressFieldWrapper.setAttribute('class', 'multilineTextareaWrapper');
 	addressFieldWrapper.style.width = width + "px";
 	addressFieldWrapper.style.height = height + "px";
@@ -94,9 +117,7 @@ function setMultilineTextarea(id, width, height, fontName, fontSize, color, line
 	root.appendChild(addressFieldWrapper);
 	
 	var addressField = document.createElement('div');
-	if(id != "") {
-		addressField.setAttribute('id', id);
-	}	
+	if(id != "") addressField.setAttribute('id', id);
 	addressField.setAttribute('class', 'multilineTextarea');	
 	addressField.setAttribute('contenteditable', 'true');
 	addressField.style.fontFamily = fontName;
@@ -106,11 +127,13 @@ function setMultilineTextarea(id, width, height, fontName, fontSize, color, line
 	addressField.style.verticalAlign = verticalAlign;
 	addressFieldWrapper.appendChild(addressField);
 }
-function setRectangle(width, height, bgColor, border, rectX, rectY) {
+function setRectangle(id, className, width, height, bgColor, border, rectX, rectY) {
 	var root = 	document.getElementById('viewPagePrintableArea');
 	
 	var rect = document.createElement('div');
+	if(id != "") rect.setAttribute('id', id);
 	rect.setAttribute('class', 'rectangle');
+	if(className != "") rect.className += ' ' + className;
 	rect.style.width = width + 'px';
 	rect.style.height = height + 'px';
 	rect.style.backgroundColor = bgColor;
