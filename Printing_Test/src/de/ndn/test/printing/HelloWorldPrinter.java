@@ -7,6 +7,8 @@ import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 
+import javafx.scene.control.Label;
+
 public class HelloWorldPrinter implements Printable {
 
 	public void doPrint() {
@@ -45,6 +47,7 @@ public class HelloWorldPrinter implements Printable {
 
         /* Now we perform our rendering */
         g.drawString("Hello world!", 0, 10);
+        
 
         /* tell the caller that this page is part of the printed document */
         return PAGE_EXISTS;

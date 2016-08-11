@@ -1,0 +1,8 @@
+.btn {
+	-fx-text-base-color: #ffffff;
+	-fx-background-color:#ff8000;
+	-fx-background-insets: 0px;
+	-fx-background-radius: 50px;
+	-fx-alignment: CENTER;
+	-fx-content-display: CENTER;
+}

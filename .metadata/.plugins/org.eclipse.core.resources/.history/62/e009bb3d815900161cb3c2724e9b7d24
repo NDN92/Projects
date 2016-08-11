@@ -1,9 +1,0 @@
-package de.NDN.app.globalObjects;
-
-public interface RapportHeader {
-	String POSITION 		= "Pos.";
-	String DESCRIPTION		= "Bezeichnung";
-	String AMOUNT			= "Menge";
-	String UNIT				= "Einheit";
-	String PRICE_PER_UNIT	= "Einzelpreis";
-}
