@@ -101,12 +101,15 @@ public class GUI_Start2 extends Application {
 		pagePrintableArea.setStyle("-fx-background-color: lightgrey;");
 		page.getChildren().add(pagePrintableArea);
 		
-		MultilineText ta2 = new MultilineText("addressArea", "", 5, pagePrintableArea);
-		pagePrintableArea.getChildren().add(ta2);
+//		MultilineText ta2 = new MultilineText("addressArea", "", 5, pagePrintableArea);
+//		pagePrintableArea.getChildren().add(ta2);
 		
 //		Label la = new Label("Malerbetrieb Roland Nowak");
 //		la.setFont(new javafx.scene.text.Font("Arial", 15));
 //		pagePrintableArea.getChildren().add(la);
+		
+		TextArea ta = new TextArea();
+		pagePrintableArea.getChildren().add(ta);
 		
 		Pane page2 = new Pane();
 		page2.getStyleClass().add("page");
