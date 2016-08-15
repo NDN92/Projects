@@ -1,0 +1,31 @@
+.btn {
+	-fx-text-base-color: #ffffff;
+	-fx-background-color:#ff8000;
+	-fx-background-insets: 0px;
+	-fx-background-radius: 50px;
+	-fx-alignment: CENTER;
+}
+.btn:hover {
+	-fx-text-base-color: #ffffff;
+	-fx-background-color:#a65300;
+	-fx-background-insets: 0px;
+	-fx-background-radius: 50px;
+	-fx-alignment: CENTER;
+}
+
+.page {
+	
+}
+
+.text-area {
+	-fx-padding: 0px;
+	-fx-background-insets: 0;
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+}
+.text-area .content {
+	-fx-padding: 0px;
+	-fx-background-insets: 0;
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+}

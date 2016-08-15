@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;de.NDN.app.globalObjects.RapportHeader&apos; to &apos;RapportAttributes&apos;&#x0D;&#x0A;- Original project: &apos;NDN_Rechnungsprogramm&apos;&#x0D;&#x0A;- Original element: &apos;de.NDN.app.globalObjects.RapportHeader&apos;&#x0D;&#x0A;- Renamed element: &apos;de.NDN.app.globalObjects.RapportAttributes&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;RapportHeader&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;de.NDN.app.globalObjects{RapportHeader.java[RapportHeader" matchStrategy="1" name="RapportAttributes" qualified="false" references="true" similarDeclarations="false" stamp="1470232230300" textual="false" version="1.0"/>
+</session>

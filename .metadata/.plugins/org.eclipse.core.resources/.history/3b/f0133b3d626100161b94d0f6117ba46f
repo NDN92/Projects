@@ -1,0 +1,165 @@
+package de.NDN.test2.GUI;
+
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.print.PrinterJob;
+import java.beans.EventHandler;
+
+import javafx.application.Application;
+import javafx.beans.property.ReadOnlyDoubleProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.EventType;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.effect.BlurType;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+public class GUI_Start2 extends Application {
+
+	public static void main(String[] args) {
+		launch(args);
+	}
+
+	@Override
+	public void start(Stage stage) throws Exception {
+		Group root = new Group();	
+		Scene scene = new Scene(root);
+		
+		String style = getClass().getResource("").toExternalForm() + "style.css";
+		scene.getStylesheets().add(style);
+		
+		VBox layer1 = new VBox();
+		layer1.prefWidthProperty().bind(scene.widthProperty());
+		layer1.prefHeightProperty().bind(scene.heightProperty());
+		layer1.setStyle("-fx-background-color: lightblue;");
+		root.getChildren().add(layer1);
+		
+		final Menu file = new Menu("Datei");
+		final Menu edit = new Menu("Bearbeiten");
+		MenuBar menuBar = new MenuBar();
+		menuBar.setPrefHeight(30);
+		menuBar.setMaxHeight(30);
+		menuBar.getMenus().addAll(file, edit);
+		layer1.getChildren().add(menuBar);
+		
+		ScrollPane scroll = new ScrollPane();
+		scroll.prefWidthProperty().bind(layer1.widthProperty());
+		scroll.prefHeightProperty().bind(layer1.heightProperty());
+		//scroll.autosize();
+		scroll.setHbarPolicy(ScrollBarPolicy.ALWAYS);
+		scroll.setVbarPolicy(ScrollBarPolicy.ALWAYS);
+		layer1.getChildren().add(scroll);
+		
+		VBox pages = new VBox(20.0);	
+		pages.setPadding(new Insets(20.0, 50.0, 80.0, 50.0));
+		pages.setAlignment(Pos.CENTER);
+		double scaleFactor = 1.0;
+		pages.setScaleX(scaleFactor);
+		pages.setScaleY(scaleFactor);
+		pages.minWidthProperty().bind(scroll.widthProperty().subtract(15.0));
+//		pages.minHeightProperty().bind(scroll.heightProperty().add(PrinterJob.getPrinterJob().defaultPage().getHeight() * scaleFactor));
+		scroll.setContent(pages);		
+		
+		Pane page = new Pane();
+		page.getStyleClass().add("page");
+		page.setEffect( new DropShadow(BlurType.GAUSSIAN, Color.GREY, 10.0, 0.0, 0.0, 0.0) );
+		page.setPrefWidth(PrinterJob.getPrinterJob().defaultPage().getWidth());
+		page.setMaxWidth(PrinterJob.getPrinterJob().defaultPage().getWidth());
+		page.setPrefHeight(PrinterJob.getPrinterJob().defaultPage().getHeight());
+		page.setMaxHeight(PrinterJob.getPrinterJob().defaultPage().getHeight());		
+		page.setStyle("-fx-background-color: white;");
+		pages.getChildren().add(page);
+		
+		Pane pagePrintableArea = new Pane();		
+		pagePrintableArea.setPrefWidth(page.getPrefWidth() - (2.0 * 50.0));
+		pagePrintableArea.setMaxWidth(page.getPrefWidth() - (2.0 * 50.0));
+		pagePrintableArea.setPrefHeight(page.getPrefHeight() - (2.0 * 28.0));
+		pagePrintableArea.setMaxHeight(page.getPrefHeight() - (2.0 * 28.0));
+		pagePrintableArea.setLayoutX(50.0);
+		pagePrintableArea.setLayoutY(28.0);
+		pagePrintableArea.setStyle("-fx-background-color: lightgrey;");
+		page.getChildren().add(pagePrintableArea);
+		
+//		MultilineText ta2 = new MultilineText("addressArea", "", 5, pagePrintableArea);
+//		pagePrintableArea.getChildren().add(ta2);
+		
+		TextArea ta
+		
+		Label la = new Label("Malerbetrieb Roland Nowak");
+		la.setFont(new javafx.scene.text.Font("Arial", 15));
+		pagePrintableArea.getChildren().add(la);
+		
+		Pane page2 = new Pane();
+		page2.getStyleClass().add("page");
+		page2.setEffect( new DropShadow(BlurType.GAUSSIAN, Color.GREY, 10.0, 0.0, 0.0, 0.0) );
+		page2.setPrefWidth(PrinterJob.getPrinterJob().defaultPage().getWidth());
+		page2.setMaxWidth(PrinterJob.getPrinterJob().defaultPage().getWidth());
+		page2.setPrefHeight(PrinterJob.getPrinterJob().defaultPage().getHeight());
+		page2.setMaxHeight(PrinterJob.getPrinterJob().defaultPage().getHeight());		
+		page2.setStyle("-fx-background-color: white;");
+		pages.getChildren().add(page2);
+		
+		pages.setMinHeight( (page.getPrefHeight() * 2 + 20 + 20 + 80) * scaleFactor );
+//		double newWidth = (page.getPrefWidth() * 2 + 50 + 50) * scaleFactor;
+//		double scrollwidth = scroll.widthProperty().get();
+//		if(newWidth > scroll.widthProperty().get()) {
+//			pages.setMinWidth( newWidth );
+//		}
+		
+		
+		
+		VBox layer2BtnLeft = new VBox();
+		layer2BtnLeft.setLayoutY(menuBar.getMaxHeight() + 10.0);
+		layer2BtnLeft.setLayoutX(10.0);
+		root.getChildren().add(layer2BtnLeft);
+		
+		Button btnPrint = new Button("Drucken");
+		Button btnSave = new Button("Speichern");
+		layer2BtnLeft.getChildren().addAll(btnPrint, btnSave);
+		
+		
+		HBox layer3BtnBottom = new HBox();
+		layer3BtnBottom.layoutYProperty().bind(scene.heightProperty().subtract(60));		
+		root.getChildren().add(layer3BtnBottom);
+		
+		Button btnZoomOut = new Button("-");
+		btnZoomOut.setPrefSize(30.0, 30.0);
+		btnZoomOut.getStyleClass().add("btn");
+		Button btnZoomIn = new Button("+");
+		btnZoomIn.setPrefSize(30.0, 30.0);
+		btnZoomIn.getStyleClass().add("btn");
+		layer3BtnBottom.getChildren().addAll(btnZoomOut, btnZoomIn);
+		
+		layer3BtnBottom.layoutXProperty().bind(scene.widthProperty().divide(2.0).subtract( (btnZoomOut.getPrefWidth() + btnZoomIn.getPrefWidth()) / 2.0 ));
+		
+		stage.setMaximized(true);
+		stage.setMinWidth(600.0);
+		stage.setMinHeight(480.0);
+		stage.setScene(scene);
+		stage.show();
+	}
+
+}
+
+

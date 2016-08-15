@@ -1,0 +1,133 @@
+package de.NDN.test2.GUI;
+
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Toolkit;
+import java.util.ArrayList;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.control.TextField;
+
+class MultilineText extends TextField {
+	private Parent pnt;
+	private String gID;
+	private int maxLines;
+	
+	private int line = 1;
+
+	public MultilineText(String gID, String text, int maxLines, Parent pnt) {
+		super(text);
+		this.pnt = pnt;
+		this.gID = gID;
+		this.maxLines = maxLines;
+		
+		addEventHandler(KeyEvent.KEY_TYPED, new EventHandler<KeyEvent>() {
+		    @Override
+		    public void handle(KeyEvent event) {
+		    	Parent parent = getPnt();
+		        String key = event.getCharacter();
+		        
+		        ArrayList<MultilineText> textLines = new ArrayList<MultilineText>();
+		        ObservableList<Node> elements = ((Pane) parent).getChildren();
+		        String thisgID = getgID();
+		        int lastTextLineIndex = 0;
+	        	for(int i = 0; i < elements.size(); i++) {
+	        		Node elem = elements.get(i);
+	        		if(elem instanceof MultilineText) {
+	        			MultilineText mlT = (MultilineText) elem;	        			
+	        			if(mlT.getgID().equals(thisgID)) {
+	        				textLines.add(mlT);
+	        				lastTextLineIndex = i;
+	        			}
+	        		}
+	        	}
+	        	
+	        	int maxLines = getMaxLines();
+	        	
+		        if(maxLines > textLines.size() && key.equals("\r")) {		        	
+		        	MultilineText prevLine = textLines.get(textLines.size() - 1);
+		        	prevLine.setPressed(false);
+		        	
+		        	MultilineText nextLine = new MultilineText(thisgID, "", maxLines, parent);
+		        	nextLine.setLayoutY(prevLine.getLayoutY() + 20);
+		        	elements.add(lastTextLineIndex + 1, nextLine);
+		        	textLines.add(nextLine);
+		        	
+		        	nextLine.requestFocus();
+		        }
+		        if(key.equals("\b")) {
+		        	if(textLines.size() > 1) {
+		        		String textContent = getText();
+			        	if(textContent.equals("")) {
+			        		elements.remove(lastTextLineIndex);
+			        		textLines.remove(textLines.size() - 1);
+			        		
+			        		MultilineText prevLine = textLines.get(textLines.size() - 1);
+			        		prevLine.requestFocus();
+			        		prevLine.positionCaret( prevLine.getLength() );
+			        	}
+		        	}		        	
+		        }
+		    }});
+		
+		
+		setFont(new javafx.scene.text.Font("Arial", 15));
+		Font font = new Font("Arial", Font.PLAIN, 15);
+		FontMetrics fm = Toolkit.getDefaultToolkit().getFontMetrics(font);		
+		
+		int stringWidth = fm.stringWidth(text) + 40;
+		int stringHeight = 40;
+		
+		setPrefWidth( stringWidth );
+		setMaxHeight( stringHeight );
+		
+		textProperty().addListener(new ChangeListener<String>() {
+		    @Override
+		    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+		    	setFont(new javafx.scene.text.Font("Arial", 15));
+				Font font = new Font("Arial", Font.PLAIN, 15);
+				FontMetrics fm = Toolkit.getDefaultToolkit().getFontMetrics(font);	
+				int newStringWidth = fm.stringWidth(newValue) + 50;
+				
+		    	setPrefWidth(newStringWidth); // why 7? Totally trial number.
+		    }
+		});
+		
+	}
+	
+	public Parent getPnt() {
+		return pnt;
+	}
+
+	public int getLine() {
+		return line;
+	}
+
+	public void setLine(int line) {
+		this.line = line;
+	}
+
+	public String getgID() {
+		return gID;
+	}
+
+	public void setgID(String gID) {
+		this.gID = gID;
+	}
+
+	public int getMaxLines() {
+		return maxLines;
+	}
+
+	public void setMaxLines(int maxLines) {
+		this.maxLines = maxLines;
+	}
+
+}

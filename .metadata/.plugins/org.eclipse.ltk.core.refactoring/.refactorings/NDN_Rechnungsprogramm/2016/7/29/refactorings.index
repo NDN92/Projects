@@ -1,0 +1,19 @@
+1468976857608	Encapsulate field 'viewPageShadowBlur'
+1468979918359	Encapsulate field 'pages'
+1468980663282	Move compilation units
+1468981879522	Rename type 'companyHeader'
+1468982340168	Move compilation unit
+1468982353058	Move compilation unit
+1468982396937	Rename type 'Document'
+1468982409719	Rename type 'Page'
+1468982438067	Rename package 'de.NDN.app.objects'
+1469013768801	Rename type 'lineItem'
+1469019010716	Move compilation unit
+1469019027901	Rename compilation unit 'DocumentFactory.java'
+1469062493016	Delete element
+1469062563896	Delete element
+1469063264250	Move file
+1469063269686	Delete element
+1469063296368	Rename package 'de.NDN.app.Images'
+1469284495384	Move compilation unit
+1469402774751	Rename resource 'Roland Nowak Malerbetrieb - Logo 2012 - V1.1 - Web.png'
